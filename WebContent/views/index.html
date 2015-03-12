@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Employee Directory</title>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/myscript.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("form.ajax").submit(function(event) {
+			makeAjaxCall(this, successHandler, errorHandler);
+			event.preventDefault();
+		});
+
+		function successHandler(data) {
+			if (data.id.length == 0) {
+				$("#res").show().find("table").hide();
+				$("#res #statusText").removeClass("error").text(
+						"OOPS! No employee found!");
+				return;
+			}
+
+			$("#res").show();
+			$("#res #statusText").removeClass("error").text(
+					"Retrieved details of employee!");
+
+			var tds = $("#res table td:odd");
+			tds[0].innerHTML = data.id;
+			tds[1].innerHTML = data.name;
+			tds[2].innerHTML = data.designation;
+			tds[3].innerHTML = data.salary;
+		}
+
+		function errorHandler() {
+			$("#res #statusText").addClass("error").text(
+					"Something went wrong!");
+			$("#res").hide();
+		}
+	});
+</script>
+<link href="../css/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+		<div id="navigation">
+			<ul>
+				<li><a href="index.html" class="current">Find employee by
+						ID</a></li>
+				<li><a href="addEmployee.html">Add employee</a></li>
+				<li><a href="findByDesignation.html">Find employees by
+						designation</a></li>
+			</ul>
+			<div style="clear: both;"></div>
+		</div>
+		<h2>Find employees by their IDs</h2>
+		</header>
+
+		<form action="../findById.req" class="ajax">
+			<div>
+				<p class="formlabel">Employee ID</p>
+				<input type="text" name="id" autofocus autocomplete="off"
+					class="formfield" />
+			</div>
+			<input type="submit" value="Find" class="tmargin20" />
+		</form>
+
+		<div id="res" class="tmargin20 hide">
+			<h3 id="statusText" style="text-decoration: underline;"
+				class="bmargin5 tmargin10"></h3>
+			<table>
+				<tbody>
+					<tr>
+						<td><label for="id" class="heading rpadding10">ID </label></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td><label for="name" class="heading rpadding10">Name
+						</label></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td><label for="designation" class="heading rpadding10">Designation</label></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td><label for="salary" class="heading rpadding10">Salary</label></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<footer>
+		<h4>Copyrights &copy; 2013. INTUIT Technologies Pvt. Ltd.</h4>
+		</footer>
+	</div>
+</body>
+</html>
