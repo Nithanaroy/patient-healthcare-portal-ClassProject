@@ -19,7 +19,8 @@ public class AddPatient implements ICommand {
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
 		Patient p = new Patient(fname, lname);
-		e.addPatient(p);
+		p = e.addPatient(p);
+		request.setAttribute("patient", p);
 		request.getRequestDispatcher("/views/viewPatient.jsp")
 				.forward(request, response);
 	}

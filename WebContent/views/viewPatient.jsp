@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +51,27 @@
 
 		<!-- Body. Start modifying from here -->
 
-		This is awesome!
+		<h1>Details of the patient</h1>
+
+		<table
+			class="table table-condensed table-hover table-bordered table-striped">
+			<tr>
+				<td><strong>ID</strong></td>
+				<td>${patient.id}</td>
+			</tr>
+			
+			<tr>
+				<td><strong>First Name</strong></td>
+				<td>${patient.firstName}</td>
+			</tr>
+			
+			<tr>
+				<td><strong>Last Name</strong></td>
+				<td>${patient.lastName}</td>
+			</tr>
+			
+			
+		</table>
 
 		<!-- All modifications should end here -->
 
