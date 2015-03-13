@@ -6,7 +6,7 @@
 <script type="text/javascript" src="../js/vendor/jquery.js"></script>
 <script type="text/javascript"
 	src="../js/vendor/bootstrap/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/script.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
 
 <link href="../css/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
@@ -48,21 +48,59 @@
 
 		<!-- Body. Start modifying from here -->
 
-		<form action='addPatient.req' method="post">
+		<form name='pregistration' action='addPatient.req' method="post" onsubmit="return checkAll()">
+			<div class="form-group">
+				<label for="uname">User Name</label> <input type="text" name='uname'
+					class="form-control" id="uname"
+					placeholder="Enter desired user name" onchange="checkUserName(this.value)">
+			</div>
+			<div class="form-group">
+				<label for="pwd">Password</label> <input type="password" name='pwd'
+					class="form-control" id="pwd"
+					placeholder="Enter your desired password" onchange="checkPassword(this.value)">
+			</div>
+			<div class="form-group">
+				<label for="cpwd">Confirm Password</label> <input type="password" name='cpwd'
+					class="form-control" id="cpwd"
+					placeholder="Enter your password again" onchange="checkMatchPassword()" disabled>
+			</div>
+			
 			<div class="form-group">
 				<label for="fname">First Name</label> <input type="text"
 					name='fname' class="form-control" id="fname"
-					placeholder="Enter your first name" autofocus="autofocus">
+					placeholder="Enter your first name" autofocus="autofocus" onchange="checkName(document.pregistration.fname.value)">
 			</div>
 			<div class="form-group">
 				<label for="lname">Last Name</label> <input type="text" name='lname'
-					class="form-control" id="lname" placeholder="Enter your last name">
+					class="form-control" id="lname" placeholder="Enter your last name" onchange="checkName(document.pregistration.lname.value)">
+			</div>
+			<div class="form-group">
+				<label for="gender">Gender</label><br/> 
+				<input type="radio" name="gender"  value="Male"/>Male
+                <input type="radio" name="gender"  value="female"/>Female
 			</div>
 			<div class="form-group">
 				<label for="email">Email</label> <input type="email" name='email'
 					class="form-control" id="email"
-					placeholder="Enter your email address">
+					placeholder="Enter your email address" onchange="checkEmail(this.value)">
 			</div>
+			<div class="form-group">
+				<label for="mobilenumber">Mobile Number</label> <input type="text" name='mobilenumber'
+					class="form-control" id="mobilenumber"
+					placeholder="Enter your mobile number" onchange="checkMobileNumber(this.value)">
+			</div>
+			<div class="form-group">
+				<label for="address">Address</label> <input type="text" name='address'
+					class="form-control" id="address"
+					placeholder="Enter your Address" onchange="checkAddress(this.value)">
+			</div>
+			<div class="form-group">
+				<label for="zipcode">Zip Code</label> <input type="text" name='zipcode'
+					class="form-control" id="zipcode"
+					placeholder="Enter your password again" onchange="checkZipCode(this.value)">
+			</div>
+			
+			
 			<button type="submit" class="btn btn-default">Submit</button>
 		</form>
 

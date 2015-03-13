@@ -16,9 +16,19 @@ public class AddPatient implements ICommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PatientDAO e = new PatientDAO();
+		
+		String uname = request.getParameter("uname");
+		String pwd = request.getParameter("pwd");		
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
-		Patient p = new Patient(fname, lname);
+		String gender = request.getParameter("gender");
+		String email = request.getParameter("email");
+		String mobileNumber = request.getParameter("mobilenumber");
+		String address = request.getParameter("address");
+		String zipCode = request.getParameter("zipcode");
+		 
+		 
+		Patient p = new Patient(uname,pwd,fname,lname,gender,email,mobileNumber,address,zipCode);
 		e.addPatient(p);
 		request.getRequestDispatcher("/views/viewPatient.jsp")
 				.forward(request, response);
