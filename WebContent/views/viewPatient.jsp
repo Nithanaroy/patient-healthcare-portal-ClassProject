@@ -9,8 +9,8 @@
 <title>Patient Healthcare: View Patient</title>
 <script type="text/javascript" src="../js/vendor/jquery.js"></script>
 <script type="text/javascript"
-	src="../js/vendor/bootstrap/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/script.js"></script>
+	src="../js/vendor/bootstrap/bootstrapjs"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
 
 <link href="../css/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
