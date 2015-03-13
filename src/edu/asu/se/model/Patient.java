@@ -4,11 +4,13 @@ public class Patient {
 
 	private String userName, password, firstName, lastName, gender, email,
 			mobileNumber, Address, zipCode;
+	private int id;
 
 	public Patient(String userName, String password, String firstName,
 			String lastName, String gender, String email, String mobileNumber,
 			String address, String zipCode) {
 		super();
+		
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
@@ -32,8 +34,20 @@ public class Patient {
 		return lastName;
 	}
 
+	public String getName() {
+		return this.getFirstName() + " " + this.getLastName();
+	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUserName() {
