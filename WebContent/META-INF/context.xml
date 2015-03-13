@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-	<Resource name="jdbc/EmployeeDB" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/HospitalDB" auth="Container" type="javax.sql.DataSource"
 		username="root" password="" driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/JSP_Project?autoReconnect=true"
+		url="jdbc:mysql://localhost:3306/SE_Project?autoReconnect=true"
 		maxActive="100" maxIdle="30" maxWait="100000" />
 </Context>

@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Patient Healthcare</title>
+<title>Patient Healthcare: View Patient</title>
 <script type="text/javascript" src="../js/vendor/jquery.js"></script>
 <script type="text/javascript"
 	src="../js/vendor/bootstrap/bootstrap.min.js"></script>
@@ -35,9 +37,8 @@
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li><a href="addPatient.html">Add Patient <span
-									class="sr-only">(current)</span></a></li>
-							<li><a href="viewDoctors.html">View Doctors</a></li>
+							<li><a href="#">Add Patient <span class="sr-only">(current)</span></a></li>
+							<li><a href="#">View Doctors</a></li>
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->
@@ -48,8 +49,7 @@
 
 		<!-- Body. Start modifying from here -->
 
-		
-
+		This is awesome!
 
 		<!-- All modifications should end here -->
 

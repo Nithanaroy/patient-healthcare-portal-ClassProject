@@ -35,9 +35,9 @@
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li><a href="addPatient.html">Add Patient <span
+							<li class="active"><a href="#">Add Patient <span
 									class="sr-only">(current)</span></a></li>
-							<li><a href="viewDoctors.html">View Doctors</a></li>
+							<li><a href="#">View Doctors</a></li>
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->
@@ -48,7 +48,23 @@
 
 		<!-- Body. Start modifying from here -->
 
-		
+		<form action='addPatient.req' method="post">
+			<div class="form-group">
+				<label for="fname">First Name</label> <input type="text"
+					name='fname' class="form-control" id="fname"
+					placeholder="Enter your first name" autofocus="autofocus">
+			</div>
+			<div class="form-group">
+				<label for="lname">Last Name</label> <input type="text" name='lname'
+					class="form-control" id="lname" placeholder="Enter your last name">
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label> <input type="email" name='email'
+					class="form-control" id="email"
+					placeholder="Enter your email address">
+			</div>
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
 
 
 		<!-- All modifications should end here -->

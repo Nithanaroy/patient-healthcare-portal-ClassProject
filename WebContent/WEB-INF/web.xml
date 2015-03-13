@@ -23,7 +23,7 @@
 		<description></description>
 		<display-name>ControllerServlet</display-name>
 		<servlet-name>ControllerServlet</servlet-name>
-		<servlet-class>com.intuit.training.controller.ControllerServlet
+		<servlet-class>edu.asu.se.controller.ControllerServlet
 		</servlet-class>
 	</servlet>
 	<servlet-mapping>
