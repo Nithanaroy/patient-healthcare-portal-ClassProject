@@ -1,0 +1,9 @@
+This folder hosts are the database schema migrations.
+
+Each file has a name and a sequence number at the end.
+
+If you make any changes to the database "schema", create a new file in this folder. 
+The filename should indicate the changes made to the schema briefly. The file should have the first lines in comments, describing in detail about the change.
+[ALERT] Every file should only the changes made from the most recent state of DB. Don't put the entire schema dump, just include the delta change done.
+
+So whenever there is a change, other developers will execute the new file(s) added to update their schema locally. 
