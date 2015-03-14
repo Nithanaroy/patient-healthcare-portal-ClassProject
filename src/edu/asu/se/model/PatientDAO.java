@@ -38,9 +38,11 @@ public class PatientDAO {
 	public Patient addPatient(Patient p) {
 		try {
 			Connection con = dataSource.getConnection();
-			String sql = "INSERT INTO patient (firstname, lastname) "
-					+ "VALUES ('" + p.getFirstName() + "', '" + p.getLastName()
-					+ "');";
+			String sql = "INSERT INTO patient (username, pwd, firstname, lastname, gender, email, mobilenumber, address, zipcode,age) "
+					+ "VALUES ('"+p.getUserName()+"','"+p.getPassword()+"','" + p.getFirstName() + "', '" + p.getLastName()
+					+ "','"+p.getGender()+"','"+p.getEmail()+"','"+p.getMobileNumber()+"','"+p.getAddress()+"','"+p.getZipCode()+"','"+p.getAge()+"')";
+			
+			System.out.println(sql);
 			PreparedStatement ps = con.prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
 			ps.executeUpdate();
@@ -69,7 +71,7 @@ public class PatientDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				e = new Patient(rs.getString(1), rs.getString(2), rs.getString(3),null,null,null,null,null,null);
+				e = new Patient(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10));
 			}
 			con.close();
 		} catch (SQLException exp) {

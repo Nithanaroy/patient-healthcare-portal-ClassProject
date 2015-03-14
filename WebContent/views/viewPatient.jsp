@@ -8,8 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Patient Healthcare: View Patient</title>
 <script type="text/javascript" src="../js/vendor/jquery.js"></script>
-<script type="text/javascript"
-	src="../js/vendor/bootstrap/bootstrapjs"></script>
+<script type="text/javascript" src="../js/vendor/bootstrap/bootstrapjs"></script>
 <script type="text/javascript" src="../js/scripts.js"></script>
 
 <link href="../css/vendor/bootstrap/css/bootstrap.min.css"
@@ -50,8 +49,8 @@
 		</header>
 
 		<!-- Body. Start modifying from here -->
-
-		<h1>Details of the patient</h1>
+		<h1>Registered Patient Successfully</h1>
+		<h3>Details of the registered patient </h3>
 
 		<table
 			class="table table-condensed table-hover table-bordered table-striped">
@@ -59,18 +58,42 @@
 				<td><strong>ID</strong></td>
 				<td>${patient.id}</td>
 			</tr> --%>
-			
+
+			<tr>
+				<td><strong>User Name</strong></td>
+				<td>${patient.userName}</td>
+			</tr>
+
 			<tr>
 				<td><strong>First Name</strong></td>
 				<td>${patient.firstName}</td>
 			</tr>
-			
+
 			<tr>
 				<td><strong>Last Name</strong></td>
-				<td>${patient.lastName}</td>
+				<td>${patient.userName}</td>
 			</tr>
-			
-			
+			<tr>
+				<td><strong>Gender</strong></td>
+				<td>${patient.gender}</td>
+			</tr>
+			<tr>
+				<td><strong>Email</strong></td>
+				<td>${patient.email}</td>
+			</tr>
+			<tr>
+				<td><strong>Mobile Number</strong></td>
+				<td>${patient.mobileNumber}</td>
+			</tr>
+			<tr>
+				<td><strong>Address</strong></td>
+				<td>${patient.address}</td>
+			</tr>
+			<tr>
+				<td><strong>Zip Code</strong></td>
+				<td>${patient.zipCode}</td>
+			</tr>
+
 		</table>
 
 		<!-- All modifications should end here -->

@@ -121,7 +121,7 @@ function checkAll()
 	
 	var a10=isRadioEmpty(document.pregistration.gender);
 	
-	alert(a1&a2&a3&a4&a5&a6&a7&a9&a10&a11);
+	//alert(a1&a2&a3&a4&a5&a6&a7&a9&a10&a11);
 	
 	if(a1&a2&a3&a4&a5&a6&a7&a9&a10&a11)
 	return true;

@@ -26,9 +26,10 @@ public class AddPatient implements ICommand {
 		String mobileNumber = request.getParameter("mobilenumber");
 		String address = request.getParameter("address");
 		String zipCode = request.getParameter("zipcode");
+		String age=request.getParameter("age");
 
 		Patient p = new Patient(uname, pwd, fname, lname, gender, email,
-				mobileNumber, address, zipCode);
+				mobileNumber, address, zipCode,age);
 		e.addPatient(p);
 
 		request.setAttribute("patient", p);

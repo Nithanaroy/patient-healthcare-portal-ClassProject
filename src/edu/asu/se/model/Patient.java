@@ -3,12 +3,12 @@ package edu.asu.se.model;
 public class Patient {
 
 	private String userName, password, firstName, lastName, gender, email,
-			mobileNumber, Address, zipCode;
+			mobileNumber, Address, zipCode,age;
 	private int id;
 
 	public Patient(String userName, String password, String firstName,
 			String lastName, String gender, String email, String mobileNumber,
-			String address, String zipCode) {
+			String address, String zipCode, String age) {
 		super();
 		
 		this.userName = userName;
@@ -20,6 +20,7 @@ public class Patient {
 		this.mobileNumber = mobileNumber;
 		Address = address;
 		this.zipCode = zipCode;
+		this.setAge(age);
 	}
 
 	public String getFirstName() {
@@ -104,6 +105,14 @@ public class Patient {
 
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
 	}
 
 }
