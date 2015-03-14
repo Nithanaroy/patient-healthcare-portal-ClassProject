@@ -36,5 +36,3 @@ INSERT INTO patient (username, pwd, firstname, lastname, gender, email, mobilenu
 
 select * from patient;
 
-
-
