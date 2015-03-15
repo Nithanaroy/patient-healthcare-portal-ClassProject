@@ -30,9 +30,9 @@ public class AddPatient implements ICommand {
 
 		Patient p = new Patient(uname, pwd, fname, lname, gender, email,
 				mobileNumber, address, zipCode,age);
-		e.addPatient(p);
+		Patient addedPatientFromDB=e.addPatient(p);
 
-		request.setAttribute("patient", p);
+		request.setAttribute("patient", addedPatientFromDB);
 
 		request.getRequestDispatcher("/views/viewPatient.jsp").forward(request,
 				response);
