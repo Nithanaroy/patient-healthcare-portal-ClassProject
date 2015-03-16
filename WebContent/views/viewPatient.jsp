@@ -49,7 +49,7 @@
 		</header>
 
 		<!-- Body. Start modifying from here -->
-		<h1>Registered Patient Successfully</h1>
+		
 		<h3>Details of the registered patient </h3>
 
 		<table
