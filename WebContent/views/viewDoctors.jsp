@@ -50,19 +50,29 @@
 		</header>
 
 		<!-- Body. Start modifying from here -->
+		<h3 class='bmargin20'>List of available doctors</h3>
+		<!-- TODO: This is dummy  -->
+		<input type="search" class="form-control bmargin20" placeholder="filter doctors" autofocus>
+		<!-- TODO: Refactor this piece -->
 		<%@ page import="edu.asu.se.model.*"%>
 		<%@ page import="java.util.ArrayList"%>
-		<%! 
-  DoctorDAO dao=new DoctorDAO();
-  ArrayList<Doctor> doctorList = dao.searchDoctor();
-%>
-		<table>
+		<%!DoctorDAO dao = new DoctorDAO();
+	ArrayList<Doctor> doctorList = dao.searchDoctor();%>
+		<table
+			class="table table-condensed table-hover table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Speciality</th>
+					<th>Success Rate</th>
+				</tr>
+			</thead>
 			<%
-		for (int i = 0; i < doctorList.size(); i++) {
-String firstName=doctorList.get(i).getFirstName();
-String speciality=doctorList.get(i).getSpeciality();
-String successRate=doctorList.get(i).getSuccessRate();
-	%>
+				for (int i = 0; i < doctorList.size(); i++) {
+					String firstName = doctorList.get(i).getFirstName();
+					String speciality = doctorList.get(i).getSpeciality();
+					String successRate = doctorList.get(i).getSuccessRate();
+			%>
 			<tr>
 
 				<td><%=firstName%></td>
@@ -71,8 +81,8 @@ String successRate=doctorList.get(i).getSuccessRate();
 			</tr>
 
 			<%
-}
-%>
+				}
+			%>
 		</table>
 		<!-- All modifications should end here -->
 

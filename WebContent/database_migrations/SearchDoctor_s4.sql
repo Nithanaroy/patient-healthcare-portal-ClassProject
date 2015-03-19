@@ -60,6 +60,6 @@ $$
 
 DELIMITER ;
 
-call create_doctor('doctor2','doctor2','doctor2','','orthopaedist', '94 percent');
+-- call create_doctor('doctor2','doctor2','doctor2','','orthopaedist', '94 percent');
 -- user name, pwd, firstname, lastname, specialist, successrate
 
