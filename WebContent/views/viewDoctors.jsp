@@ -52,6 +52,7 @@
 		<!-- Body. Start modifying from here -->
 		<%@ page import="edu.asu.se.model.*"%>
 		<%@ page import="java.util.ArrayList"%>
+		<!--TODO change code to java code seperately later -->
 		<%! 
   DoctorDAO dao=new DoctorDAO();
   ArrayList<Doctor> doctorList = dao.searchDoctor();
