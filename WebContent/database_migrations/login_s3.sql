@@ -15,7 +15,7 @@ CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ,
 ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
   
 ALTER TABLE patient
-DROP COLUMN pwd;
+-- DROP COLUMN pwd;
 
 ALTER TABLE `se_project`.`patient` 
 CHANGE COLUMN `username` `username` VARCHAR(45) NOT NULL ;

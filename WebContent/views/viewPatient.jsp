@@ -50,7 +50,7 @@
 
 		<!-- Body. Start modifying from here -->
 		
-		<h3>Details of the registered patient </h3>
+		<h3>Details of the patient </h3>
 
 		<table
 			class="table table-condensed table-hover table-bordered table-striped">
