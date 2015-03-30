@@ -1,4 +1,6 @@
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -52,6 +54,10 @@
 
 		<form name='login' action='login.req' method="post">
 			<div class="form-group">
+				
+                 
+                <p style="color:red"> Invalid User Name or Password. Please Try again <p>
+				
 				<label for="uname">User Name</label> <input type="text" name='uname'
 					class="form-control" id="uname"
 					placeholder="Enter desired user name" >
