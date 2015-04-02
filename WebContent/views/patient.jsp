@@ -17,6 +17,8 @@
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+	<% if(session.getAttribute("userType")!=null){
+	if(session.getAttribute("userType").equals("patient")){ %>
 	<div class='container'>
 		<header>
 			<nav class="navbar navbar-default">
@@ -39,13 +41,13 @@
 						<ul class="nav navbar-nav">
 							
 							<li><a href="viewDoctors.jsp">View Doctors</a></li>
-							<li><a href="">Treatment Request <span
+							<li><a href="treatmentrequest.jsp">Treatment Request <span
 									class="sr-only">(current)</span></a></li>
-							<li><a href="">Personal Profile <span
+							<li><a href="personalprofile.jsp">Personal Profile <span
 									class="sr-only">(current)</span></a></li>
-						   <li><a href=""> Help <span
+						   <li><a href="help.jsp"> Help <span
 									class="sr-only">(current)</span></a></li>
-						    <li><a href="">Logout <span
+						    <li><a href="logout.req">Logout <span
 									class="sr-only">(current)</span></a></li>
 						</ul>
 					</div>
@@ -66,5 +68,11 @@
 			<p class='text-center'>Copyrights &copy; 2015</p>
 		</footer>
 	</div>
+<% } }
+	else
+	{	
+%>
+<h1><center> You don't have authentication to view this page</center></h1>
+<%} %>
 </body>
 </html>

@@ -38,12 +38,12 @@
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
 							
-							<li><a href="">Add Patient</a></li>
+							<li><a href="addPatient.html">Add Patient</a></li>
 							<li><a href="">Inpatient List <span
 									class="sr-only">(current)</span></a></li>
 							<li><a href=""> Help <span
 									class="sr-only">(current)</span></a></li>
-							<li><a href="">Logout <span
+							<li><a href="logout.req">Logout <span
 									class="sr-only">(current)</span></a></li>
 							
 						</ul>
