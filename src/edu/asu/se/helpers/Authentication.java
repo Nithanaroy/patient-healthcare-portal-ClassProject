@@ -23,9 +23,7 @@ public class Authentication implements ICommand{
 	String password = request.getParameter("pwd");
 	
 	String userType=ldao.valdateUser(userName,password);
-	
 	HttpSession session=request.getSession();
-	session.setAttribute("userType", userType);
 	//System.out.println(userType);
 	if(userType==null)
 	{
@@ -36,11 +34,17 @@ public class Authentication implements ICommand{
 	if(userType.equals("staff"))
 	{
 		//System.out.println("instaff");
+		
+		session.setAttribute("userType", userType);
+		session.setAttribute("userName", userName);
 		request.getRequestDispatcher("/views/doctor.jsp").forward(request,response);
 	}
 	
 	if(userType.equals("patient"))
 	{			
+		
+		session.setAttribute("userType", userType);
+		session.setAttribute("userName", userName);
 		request.getRequestDispatcher("/views/patient.jsp").forward(request,response);
 		
 	}
