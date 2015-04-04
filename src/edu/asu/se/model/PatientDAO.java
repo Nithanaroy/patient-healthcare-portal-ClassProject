@@ -96,7 +96,7 @@ public class PatientDAO {
 			Connection con = dataSource.getConnection();
 			String sql ="INSERT INTO `se_project`.`esas`"
 					+ "(`username`,`pain`,`tiredness`,`nausea`,`depression`,"
-					+ "`anxiety`,`drowsiness`,`appetite`,`wellbeing`,`breath`,'date')"
+					+ "`anxiety`,`drowsiness`,`appetite`,`wellbeing`,`breath`,`date`)"
 					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1,esas.getUserName());
@@ -110,7 +110,7 @@ public class PatientDAO {
 			ps.setString(9, esas.getWellbeing());
 			ps.setString(10, esas.getShortnessOfBreath());
 			ps.setDate( 11, new java.sql.Date( esas.getSysdate().getTime() ));
-			 success= ps.executeUpdate();						
+			 success= ps.executeUpdate();		
 			con.close();
 		} catch (SQLException exp) {
 			exp.printStackTrace();

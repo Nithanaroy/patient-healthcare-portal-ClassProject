@@ -28,7 +28,7 @@ public class AddESAS implements ICommand{
 		String depression=request.getParameter("depression");
 		String anxiety=request.getParameter("anxiety");
 		String drowsiness=request.getParameter("drowsiness");
-		String appetitite=request.getParameter("appetitte");
+		String appetitite=request.getParameter("appetite");
 		String wellbeing=request.getParameter("wellbeing");
 		String shortnessOfBreath=request.getParameter("breath");
         String userName=(String) session.getAttribute("userName");
