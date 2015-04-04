@@ -48,7 +48,7 @@
 
 		<!-- Body. Start modifying from here -->
 		
-		<form name='ESAS' action='' method="post">
+		<form name='ESAS' action='addEsas.req' method="post">
 		
         <div class="panel panel-primary">
           <div class="panel-heading">
@@ -61,7 +61,7 @@
 		
 		<div class="form-group">
 			<h3><span class="label label-default">Pain</span></h3>
-			<select>
+			<select name='pain'>
 				<option>0</option><option>1</option><option>2</option>
 				<option>3</option><option>4</option>
 				<option>5</option><option>6</option>
@@ -72,7 +72,7 @@
 		
 		<div class="form-group">
 			<h3><span class="label label-primary">Tiredness</span></h3>
-			<select>
+			<select name='tiredness'>
 				<option>0</option><option>1</option><option>2</option>
 				<option>3</option><option>4</option>
 				<option>5</option><option>6</option>
@@ -83,7 +83,7 @@
 		
 		<div class="form-group">
 			<h3><span class="label label-success">Nausea</span></h3>
-			<select>
+			<select name='nausea'>
 				<option>0</option><option>1</option><option>2</option>
 				<option>3</option><option>4</option>
 				<option>5</option><option>6</option>
@@ -94,7 +94,7 @@
 		
 		<div class="form-group">
 			<h3><span class="label label-info">Depression</span></h3>
-			<select>
+			<select name='depression'>
 				<option>0</option><option>1</option><option>2</option>
 				<option>3</option><option>4</option>
 				<option>5</option><option>6</option>
@@ -105,7 +105,7 @@
 		
 	    <div class="form-group">
 			<h3><span class="label label-warning">Anxiety</span></h3>
-			<select>
+			<select name='anxiety'>
 				<option>0</option><option>1</option><option>2</option>
 				<option>3</option><option>4</option>
 				<option>5</option><option>6</option>
@@ -116,7 +116,7 @@
 		
 		<div class="form-group">
 			<h3><span class="label label-danger">Drowsiness</span></h3>
-			<select>
+			<select name='drowsiness'>
 				<option>0</option><option>1</option><option>2</option>
 				<option>3</option><option>4</option>
 				<option>5</option><option>6</option>
@@ -127,7 +127,7 @@
 		
 		<div class="form-group">
 			<h3><span class="label label-default">Appetite</span></h3>
-			<select>
+			<select name='appetite'>
 				<option>0</option><option>1</option><option>2</option>
 				<option>3</option><option>4</option>
 				<option>5</option><option>6</option>
@@ -138,7 +138,7 @@
 		
 		<div class="form-group">
 			<h3><span class="label label-primary">Wellbeing</span></h3>
-			<select>
+			<select name='wellbeing'>
 				<option>0</option><option>1</option><option>2</option>
 				<option>3</option><option>4</option>
 				<option>5</option><option>6</option>
@@ -149,7 +149,7 @@
 		
 		<div class="form-group">
 			<h3><span class="label label-success">Shortness of breath</span></h3>
-			<select>
+			<select name='breath'>
 				<option>0</option><option>1</option><option>2</option>
 				<option>3</option><option>4</option>
 				<option>5</option><option>6</option>
@@ -158,17 +158,11 @@
 			</select>
 		</div>
 		
+		
+	  
 		<div class="form-group">
-				<div class="form-group">
-				<label for="Date">Date</label> <input type="text" name='Date'
-					class="form-control" id="Date"
-					placeholder="Enter the date" >
-			<!-- onchange="checkUserName(this.value)" -->
-			   </div>
-	   </div>
-		
 		<button type="submit" class="btn btn-default">Submit</button>
-		
+		 </div>
 		</form>
     
 

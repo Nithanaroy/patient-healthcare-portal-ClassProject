@@ -89,22 +89,32 @@ public class PatientDAO {
 		return e;
 	}
 	
-	public void addESASRecord(EsasRecord esas)
+	public int addESASRecord(EsasRecord esas)
 	{
-		
+		int success=0;
 		try {
 			Connection con = dataSource.getConnection();
-			String sql ="Insert ?,?,";
+			String sql ="INSERT INTO `se_project`.`esas`"
+					+ "(`username`,`pain`,`tiredness`,`nausea`,`depression`,"
+					+ "`anxiety`,`drowsiness`,`appetite`,`wellbeing`,`breath`,'date')"
+					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1,1);
-			ps.setDate( 1, new java.sql.Date( esas.sysdate.getTime() ));
-			ResultSet rs = ps.executeQuery();			
-			if (rs.next()) {
-				
-			}
+			ps.setString(1,esas.getUserName());
+			ps.setString(2, esas.getPain());
+			ps.setString(3, esas.getTiredness());
+			ps.setString(4, esas.getNausea());
+			ps.setString(5, esas.getDepression());
+			ps.setString(6, esas.getAnxiety());
+			ps.setString(7,esas.getDrowsiness());
+			ps.setString(8, esas.getAppetitite());
+			ps.setString(9, esas.getWellbeing());
+			ps.setString(10, esas.getShortnessOfBreath());
+			ps.setDate( 11, new java.sql.Date( esas.getSysdate().getTime() ));
+			 success= ps.executeUpdate();						
 			con.close();
 		} catch (SQLException exp) {
 			exp.printStackTrace();
 		}
+		return success;
 	}
 }
