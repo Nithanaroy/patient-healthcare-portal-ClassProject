@@ -1,6 +1,12 @@
-
-
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,17 +36,13 @@
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="index.html">Patient Healthcare</a>
+		
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
-							<li><a href="#">Add Patient <span
-									class="sr-only">(current)</span></a></li>
-							<li><a href="#">View Doctors</a></li>
-						</ul>
+		<p> <h3> <center>Patient Health Care System</center></h3>
 					</div>
 					<!-- /.navbar-collapse -->
 				</div>
@@ -49,7 +51,10 @@
 		</header>
 
 		<!-- Body. Start modifying from here -->
-
+<% 
+if(session.getAttribute("flag")!=null){%>
+	<p><center> <h4>Invalid username or password</h4> </center></p> 
+	<%} %>
 		<form name='login' action='login.req' method="post">
 			<div class="form-group">
 				<label for="uname">User Name</label> <input type="text" name='uname'
@@ -72,5 +77,7 @@
 			<p class='text-center'>Copyrights &copy; 2015</p>
 		</footer>
 	</div>
+</body>
+</html>
 </body>
 </html>
