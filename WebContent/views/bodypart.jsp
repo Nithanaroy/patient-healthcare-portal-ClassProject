@@ -14,9 +14,23 @@
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 
 <style type="text/css">
-img.slice_background {
-	background: #CCC;
-	cursor: pointer;
+#body_diagrams td {
+	cursor: cell;
+}
+
+td.selected {
+	background-color: rgba(0, 0, 255, 0.3);
+}
+
+#body_front, #body_back {
+	position: relative;
+}
+
+#body_front img, #body_back img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1000;
 }
 </style>
 
@@ -58,104 +72,78 @@ img.slice_background {
 		<h3>Please mark on these pictures where it hurts you</h3>
 		<p>Mark by tapping or clicking</p>
 
-		<!-- <div class='row'>
-			<div class='col-md-6'>
-				<img alt="body_front" class='img-responsive' src="../images/body_front.gif">
+		<div class='row' id="body_diagrams">
+			<div class='col-md-6' id="body_front">
+				<img alt="body_front" src="../images/body_front.gif">
 			</div>
-			<div class='col-md-6'>
-				<img alt="body_back" class='img-responsive' src="../images/body_back.gif">
+			<div class='col-md-6' id="body_back">
+				<img alt="body_back" src="../images/body_back.gif">
 			</div>
-		</div> -->
-
-		<div class="row" id='body_diagrams'>
-			<div class='col-md-6' id='body_front'>
-				<table border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td colspan="2"><img src="../images/bodyfrontslices/body_front_slices_01.gif"></td>
-						<td colspan="6"><img src="../images/bodyfrontslices/body_front_slices_02.gif"></td>
-						<td colspan="2"><img src="../images/bodyfrontslices/body_front_slices_03.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td rowspan="3"><img src="../images/bodyfrontslices/body_front_slices_04.gif"></td>
-						<td colspan="2" rowspan="3"><img
-							src="../images/bodyfrontslices/body_front_slices_05.gif"></td>
-						<td colspan="4"><img src="../images/bodyfrontslices/body_front_slices_06.gif"></td>
-						<td colspan="2" rowspan="2"><img
-							src="../images/bodyfrontslices/body_front_slices_07.gif"></td>
-						<td rowspan="2"><img src="../images/bodyfrontslices/body_front_slices_08.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td colspan="4" rowspan="3"><img
-							src="../images/bodyfrontslices/body_front_slices_09.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td colspan="3" rowspan="4"><img
-							src="../images/bodyfrontslices/body_front_slices_10.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td colspan="3" rowspan="4"><img
-							src="../images/bodyfrontslices/body_front_slices_11.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td colspan="4"><img src="../images/bodyfrontslices/body_front_slices_12.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td colspan="3" rowspan="3"><img
-							src="../images/bodyfrontslices/body_front_slices_13.gif"></td>
-						<td rowspan="3"><img src="../images/bodyfrontslices/body_front_slices_14.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td colspan="3" rowspan="4"><img
-							src="../images/bodyfrontslices/body_front_slices_15.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td colspan="3" rowspan="3"><img
-							src="../images/bodyfrontslices/body_front_slices_16.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td colspan="2"><img src="../images/bodyfrontslices/body_front_slices_17.gif"></td>
-						<td colspan="2"><img src="../images/bodyfrontslices/body_front_slices_18.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td><img src="../images/bodyfrontslices/body_front_slices_19.gif"></td>
-						<td colspan="3"><img src="../images/bodyfrontslices/body_front_slices_20.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-						<td></td>
-					</tr>
-				</table>
-			</div>
-			<div class='col-md-6'></div>
 		</div>
+
 
 		<script type="text/javascript">
 			$(function() {
-				$("#body_diagrams").find("img").on("mouseover mouseout",
-						function() {
-							$(this).toggleClass("slice_background");
+
+				drawTable("body_front");
+				drawTable("body_back");
+
+				function drawTable(body_side_container_id) {
+					var selector = "#" + body_side_container_id;
+					
+					$("#body_diagrams img").width($(selector).innerWidth())
+
+					var table = getTable(25, 25, $(selector + " img").height());
+					$(table).css({
+						"width" : "100%"
+					});
+
+					$(document).on("load resize", function() {
+						$(selector + " table").css({
+							height : $(selector + " img").height(),
+							width : "100%"
 						});
+						$("#body_diagrams img").width($(selector).innerWidth())
+					});
+
+					$(selector).append(table);
+				}
+
+				/* Selection */
+				var mouseDown = false; // Is true when mouse or finger is down
+
+				$("#body_diagrams").on("mouseover click", "td", function() {
+					if (mouseDown)
+						$(this).toggleClass("selected");
+				});
+
+				$("#body_diagrams").on("mousedown", "td", function() {
+					mouseDown = true;
+					$(this).toggleClass("selected");
+				});
+
+				$("#body_diagrams").on("mouseup", "td", function() {
+					mouseDown = false;
+				});
 			});
+
+			function getTable(rows, cols, height) {
+				var table = $("<table />").css({
+					height : height
+				}).attr("border", 1);
+				for (var i = 0; i < rows; i++) {
+					var row = $("<tr />");
+					for (var j = 0; j < cols; j++) {
+						var cell = $("<td />").css({
+							"height" : height / rows,
+							width : (100 / cols) + "%"
+						});
+						$(row).append(cell);
+					}
+					$(table).append(row);
+				}
+				return table;
+			}
 		</script>
 		<!-- All modifications should end here -->
 
