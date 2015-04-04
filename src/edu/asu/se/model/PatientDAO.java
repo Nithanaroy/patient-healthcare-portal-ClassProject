@@ -88,23 +88,23 @@ public class PatientDAO {
 		}
 		return e;
 	}
-	//
-	// public List<Patient> findByDesignation(String designation) {
-	// List<Patient> employees = new LinkedList<Patient>();
-	// try {
-	// Connection con = dataSource.getConnection();
-	// String sql = "select * from Employee where Designation  = '"
-	// + designation + "'";
-	// PreparedStatement ps = con.prepareStatement(sql);
-	// ResultSet rs = ps.executeQuery();
-	// while (rs.next()) {
-	// employees.add(new Patient(rs.getInt(1), rs.getString(2), rs
-	// .getString(3), rs.getFloat(4)));
-	// }
-	// con.close();
-	// } catch (SQLException exp) {
-	// exp.printStackTrace();
-	// }
-	// return employees;
-	// }
+	
+	public void addESASRecord(EsasRecord esas)
+	{
+		
+		try {
+			Connection con = dataSource.getConnection();
+			String sql ="Insert ?,?,";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1,1);
+			ps.setDate( 1, new java.sql.Date( esas.sysdate.getTime() ));
+			ResultSet rs = ps.executeQuery();			
+			if (rs.next()) {
+				
+			}
+			con.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		}
+	}
 }
