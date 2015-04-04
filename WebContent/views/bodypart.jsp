@@ -69,79 +69,72 @@ img.slice_background {
 
 		<div class="row" id='body_diagrams'>
 			<div class='col-md-6' id='body_front'>
-				<table border="1" cellpadding="0" cellspacing="0">
+				<table border="0" cellpadding="0" cellspacing="0">
 					<tr>
-						<td colspan="2"><img
-							src="../images/bodyfrontslices/body_front_slices_01.gif"></td>
-						<td colspan="4"><img
-							src="../images/bodyfrontslices/body_front_slices_02.gif"></td>
-						<td><img
-							src="../images/bodyfrontslices/body_front_slices_03.gif"></td>
+						<td colspan="2"><img src="../images/bodyfrontslices/body_front_slices_01.gif"></td>
+						<td colspan="6"><img src="../images/bodyfrontslices/body_front_slices_02.gif"></td>
+						<td colspan="2"><img src="../images/bodyfrontslices/body_front_slices_03.gif"></td>
 						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
 					</tr>
 					<tr>
-						<td rowspan="10"><img
-							src="../images/bodyfrontslices/body_front_slices_04.gif"></td>
+						<td rowspan="3"><img src="../images/bodyfrontslices/body_front_slices_04.gif"></td>
 						<td colspan="2" rowspan="3"><img
 							src="../images/bodyfrontslices/body_front_slices_05.gif"></td>
-						<td colspan="2"><img
-							src="../images/bodyfrontslices/body_front_slices_06.gif"></td>
+						<td colspan="4"><img src="../images/bodyfrontslices/body_front_slices_06.gif"></td>
 						<td colspan="2" rowspan="2"><img
 							src="../images/bodyfrontslices/body_front_slices_07.gif"></td>
+						<td rowspan="2"><img src="../images/bodyfrontslices/body_front_slices_08.gif"></td>
 						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
 					</tr>
 					<tr>
-						<td colspan="2" rowspan="3"><img
-							src="../images/bodyfrontslices/body_front_slices_08.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td colspan="2" rowspan="5"><img
+						<td colspan="4" rowspan="3"><img
 							src="../images/bodyfrontslices/body_front_slices_09.gif"></td>
 						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
 					</tr>
 					<tr>
-						<td colspan="2" rowspan="3"><img
+						<td colspan="3" rowspan="4"><img
 							src="../images/bodyfrontslices/body_front_slices_10.gif"></td>
 						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><img
+						<td colspan="3" rowspan="4"><img
 							src="../images/bodyfrontslices/body_front_slices_11.gif"></td>
 						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
 					</tr>
 					<tr>
-						<td rowspan="3"><img
-							src="../images/bodyfrontslices/body_front_slices_12.gif"></td>
-						<td rowspan="3"><img
+						<td colspan="4"><img src="../images/bodyfrontslices/body_front_slices_12.gif"></td>
+						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
+					</tr>
+					<tr>
+						<td colspan="3" rowspan="3"><img
 							src="../images/bodyfrontslices/body_front_slices_13.gif"></td>
+						<td rowspan="3"><img src="../images/bodyfrontslices/body_front_slices_14.gif"></td>
 						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
 					</tr>
 					<tr>
-						<td colspan="2" rowspan="4"><img
-							src="../images/bodyfrontslices/body_front_slices_14.gif"></td>
-						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
-					</tr>
-					<tr>
-						<td colspan="2" rowspan="3"><img
+						<td colspan="3" rowspan="4"><img
 							src="../images/bodyfrontslices/body_front_slices_15.gif"></td>
 						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
 					</tr>
 					<tr>
-						<td><img
+						<td colspan="3" rowspan="3"><img
 							src="../images/bodyfrontslices/body_front_slices_16.gif"></td>
-						<td><img
-							src="../images/bodyfrontslices/body_front_slices_17.gif"></td>
 						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
 					</tr>
 					<tr>
-						<td><img
-							src="../images/bodyfrontslices/body_front_slices_18.gif"></td>
-						<td><img
-							src="../images/bodyfrontslices/body_front_slices_19.gif"></td>
+						<td colspan="2"><img src="../images/bodyfrontslices/body_front_slices_17.gif"></td>
+						<td colspan="2"><img src="../images/bodyfrontslices/body_front_slices_18.gif"></td>
 						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
 					</tr>
 					<tr>
+						<td><img src="../images/bodyfrontslices/body_front_slices_19.gif"></td>
+						<td colspan="3"><img src="../images/bodyfrontslices/body_front_slices_20.gif"></td>
+						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
+					</tr>
+					<tr>
+						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
+						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
+						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
 						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
 						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
 						<td><img src="../images/bodyfrontslices/spacer.gif"></td>
