@@ -62,17 +62,17 @@
 	
 	<map name = "bodyParts">
 	
-		<area shape="poly" coords="233,174, 225,274, 217,320, 163,394, 138,458, 95,431, 115,400, 97,393, 137,369, 178,292, 202,177" href="index.html" alt="right arm">
+		<area shape="poly" coords="233,174, 225,274, 217,320, 163,394, 138,458, 95,431, 115,400, 97,393, 137,369, 178,292, 202,177" href= "javascript:bodyPart('Right Arm');" alt="right arm">
 		
-		<area shape="poly" coords="233,174, 225,274, 233,319, 212,397, 213,436, 366,436, 365,397, 350,319, 355,273, 351,172" href="index.html" alt="torso">
+		<area shape="poly" coords="233,174, 225,274, 233,319, 212,397, 213,436, 366,436, 365,397, 350,319, 355,273, 351,172" href="javascript:bodyPart('Torso');" alt="torso">
 		
-		<area shape="poly" coords="233,174, 264,161, 247,101, 261,57, 264, 46, 327,60, 342,99, 323,165, 351,172 " href="index.html" alt="head">	
+		<area shape="poly" coords="233,174, 264,161, 247,101, 261,57, 264, 46, 327,60, 342,99, 323,165, 351,172 " href="javascript:bodyPart('Head');" alt="head">	
 		
-		<area shape="poly" coords="351,172, 386,201, 409,301, 448,374, 484,396, 471,400, 489,436, 463,456, 442,450, 419,398, 367,324, 358,275" href="index.html" alt="left arm">
+		<area shape="poly" coords="351,172, 386,201, 409,301, 448,374, 484,396, 471,400, 489,436, 463,456, 442,450, 419,398, 367,324, 358,275" href="javascript:bodyPart('Left Arm');" alt="left arm">
 		
-		<area shape="poly" coords="213,436, 213,742, 238,753, 251,736, 263,558, 279,436" href="index.html" alt="right leg">
+		<area shape="poly" coords="213,436, 213,742, 238,753, 251,736, 263,558, 279,436" href="javascript:bodyPart('Right Leg');" alt="right leg">
 		
-		<area shape="rect" coords="306,436, 323,560, 328,731, 348,755, 374,736, 366,436 " href="index.html" alt="left leg">
+		<area shape="poly" coords="306,436, 323,560, 328,731, 348,755, 374,736, 366,436 " href="javascript:bodyPart('Left Leg');" alt="left leg">
 		
 	
 	</map>
@@ -80,7 +80,11 @@
 	<p>The left side of this figure corresponds to your right side, as if the figure is facing you</p>
 
 	
-	
+	<script>function bodyPart(clicked)
+	{
+		alert(clicked);
+	}
+	</script>
 		<!-- All modifications should end here -->
 
 		<footer class='row'>
