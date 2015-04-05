@@ -12,8 +12,11 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 import edu.asu.se.model.PatientDAO;
 import edu.asu.se.utils.ICommand;
+import edu.asu.se.utils.MessageType;
+import edu.asu.se.utils.StatusMessage;
 
 public class AddESAS implements ICommand{
 	
@@ -37,7 +40,18 @@ public class AddESAS implements ICommand{
         EsasRecord esasrecord=new EsasRecord(userName,pain,tiredness,nausea,depression,anxiety,drowsiness,appetitite,wellbeing,shortnessOfBreath);
 		
         int success=pdao.addESASRecord(esasrecord);
-        System.out.println(success);
+        StatusMessage g = null;
+		if (success==1)
+			g = StatusMessage.createInstance("Successfully submitted",
+					MessageType.success);
+		else
+			g = StatusMessage.createInstance("Something went wrong",
+					MessageType.error);
+
+		request.setAttribute("status", g);
+
+		request.getRequestDispatcher("/views/patientHome.jsp").forward(request,
+				response);
         request.getRequestDispatcher("/views/patient.jsp").forward(request,
 				response);
 	}
