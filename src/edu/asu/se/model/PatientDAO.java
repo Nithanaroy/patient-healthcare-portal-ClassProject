@@ -107,7 +107,7 @@ public class PatientDAO {
 		}
 		return e;
 	}
-<<<<<<< HEAD
+
 	
 	public int addESASRecord(EsasRecord esas)
 	{
@@ -137,7 +137,7 @@ public class PatientDAO {
 		}
 		return success;
 	}
-=======
+
 
 	/**
 	 * Saves the body pains information by user into body_part table
@@ -181,5 +181,5 @@ public class PatientDAO {
 	// }
 	// return employees;
 	// }
->>>>>>> 3b0e94a02c376c2c440e0e7078013692859b5729
+
 }
