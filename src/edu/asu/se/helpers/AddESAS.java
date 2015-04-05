@@ -52,8 +52,7 @@ public class AddESAS implements ICommand{
 
 		request.getRequestDispatcher("/views/patientHome.jsp").forward(request,
 				response);
-        request.getRequestDispatcher("/views/patient.jsp").forward(request,
-				response);
+        
 	}
 
 }
