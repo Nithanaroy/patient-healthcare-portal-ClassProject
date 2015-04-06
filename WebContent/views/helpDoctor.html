@@ -39,131 +39,17 @@
 
 		<!-- Body. Start modifying from here -->
 
-		<h3>Help Me!</h3>
+		<h3>Help for Doctors</h3>
+
+		<p>Click on the area you need help with to expand it.</p>
+		<p>General help includes information on things such as navigating and using the toolbar.</p>
 
 
-
+<!-- The accordion menu follows. The menu defaults to having the non-general help displayed. 
+Within the 1st level accordian selections lies a nested accordion menu.
+clicking on any of the titles expands the menu and closes the others.  -->
 
 		<div class="panel-group" id="accordion1">
-
-
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion1" href="#collapse1"> <span class="glyphicon glyphicon-plus"></span> &nbsp;Patient Help
-						</a>
-					</h4>
-				</div>
-				<div id="collapse1" class="panel-collapse collapse">
-					<div class="panel-body">
-						<div class="panel-group" id="accordion1_1">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion1_1" href="#collapse1_1"> <span class="glyphicon glyphicon-plus"></span> &nbsp;Fill and Submit Forms
-										</a>
-									</h4>
-								</div>
-								<div id="collapse1_1" class="panel-collapse collapse">
-									<div class="panel-body">
-										<h4>
-											<b>Navigate to Login Page and Login</b>
-										</h4>
-										<ul class="list-group">
-											<li class="list-group-item">Launch the browser</li>
-											<li class="list-group-item">Type the url into the address bar, press enter</li>
-											<li class="list-group-item">Click 'Login' at the top right</li>
-											<li class="list-group-item">Fill in username and password, submit</li>
-										</ul>
-										<h4>
-											<b>Navigate to ESAS Record and Complete it</b>
-										</h4>
-										<ul class="list-group">
-											<li class="list-group-item">Click 'Treatment Request' on your homepage</li>
-											<li class="list-group-item">Click 'Record'</li>
-											<li class="list-group-item">Click 'ESAS Record'</li>
-											<li class="list-group-item">Fill in mandatory fields, submit</li>
-											<li class="list-group-item">If successful, a confirmation message will appear</li>
-											<li class="list-group-item">If you recive an error, follow given instructions and submit again</li>
-										</ul>
-										<h4>
-											<b>Navigate to Body Pain Record and Complete it</b>
-										</h4>
-										<ul class="list-group">
-											<li class="list-group-item">Click 'Treatment Request' on your homepage</li>
-											<li class="list-group-item">Click 'Record'</li>
-											<li class="list-group-item">Click 'Record Body Part'</li>
-											<li class="list-group-item">Click areas that are in pain</li>
-											<li class="list-group-item">If successful, a confirmation message will appear</li>
-											<li class="list-group-item">If you recive an error, follow given instructions and submit again</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion1_1" href="#collapse1_2"> <span class="glyphicon glyphicon-plus"></span> &nbsp;Create an Appointment
-										</a>
-									</h4>
-								</div>
-								<div id="collapse1_2" class="panel-collapse collapse">
-									<div class="panel-body">
-										<h4>
-											<b>Navigate to Login Page and Login</b>
-										</h4>
-										<ul class="list-group">
-											<li class="list-group-item">Launch the browser</li>
-											<li class="list-group-item">Type the url into the address bar, press enter</li>
-											<li class="list-group-item">Click 'Login' at the top right</li>
-											<li class="list-group-item">Fill in username and password, submit</li>
-										</ul>
-										<h4>
-											<b>Create Appointment</b>
-										</h4>
-										<ul class="list-group">
-											<li class="list-group-item">Click 'Treatment Request' on your homepage</li>
-											<li class="list-group-item">Click 'Create Appointment'</li>
-											<li class="list-group-item">Give a desired time, submit</li>
-											<li class="list-group-item">If successful, a confirmation message will appear</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion1_1" href="#collapse1_3"> <span class="glyphicon glyphicon-plus"></span> &nbsp;View Doctor Profile
-										</a>
-									</h4>
-								</div>
-								<div id="collapse1_3" class="panel-collapse collapse">
-									<div class="panel-body">
-										<h4>
-											<b>Navigate to Login Page and Login</b>
-										</h4>
-										<ul class="list-group">
-											<li class="list-group-item">Launch the browser</li>
-											<li class="list-group-item">Type the url into the address bar, press enter</li>
-											<li class="list-group-item">Click 'Login' at the top right</li>
-											<li class="list-group-item">Fill in username and password, submit</li>
-										</ul>
-										<h4>
-											<b>View Doctor Profile</b>
-										</h4>
-										<ul class="list-group">
-											<li class="list-group-item">Click 'Doctor Search' on your homepage</li>
-											<li class="list-group-item">Select doctor from list</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -171,30 +57,72 @@
 						</a>
 					</h4>
 				</div>
-				<div id="collapse2" class="panel-collapse collapse">
+				<div id="collapse2" class="panel-collapse collapse in">
 					<div class="panel-body">
 
 						<div class="panel-group" id="accordion1_2">
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion1_2" href="#collapse2_1"> <span class="glyphicon glyphicon-plus"></span> &nbsp;Collapsible Group Item #3.1
+										<a data-toggle="collapse" data-parent="#accordion1_2" href="#collapse2_1"> <span class="glyphicon glyphicon-plus"></span> &nbsp;Register Patient to Website
 										</a>
 									</h4>
 								</div>
 								<div id="collapse2_1" class="panel-collapse collapse">
-									<div class="panel-body">Panel 3.1</div>
+									<div class="panel-body">
+									
+										<h4><b>Navigate to Login Page and Login</b></h4>
+										
+										<ul class="list-group">
+											<li class="list-group-item">Launch the browser</li>
+											<li class="list-group-item">Type the url into the address bar, press enter</li>
+											<li class="list-group-item">Click 'Login' at the top right</li>
+											<li class="list-group-item">Fill in username and password, submit</li>
+										</ul>
+										
+										
+										<h4><b>Fill in patient details</b></h4>
+										
+										<ul class="list-group">
+											<li class="list-group-item">Click 'Register Patient' on your homepage</li>
+											<li class="list-group-item">Fill in required information, submit</li>
+											<li class="list-group-item">Check for confirmation message</li>
+											<li class="list-group-item">If an error is displayed, follow the given instructions and resubmit</li>
+										</ul>
+										
+										
+									</div>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion1_2" href="#collapse2_2"> <span class="glyphicon glyphicon-plus"></span> &nbsp;Collapsible Group Item #3.2
+										<a data-toggle="collapse" data-parent="#accordion1_2" href="#collapse2_2"> <span class="glyphicon glyphicon-plus"></span> &nbsp;View Patient Forms and Appointments
 										</a>
 									</h4>
 								</div>
 								<div id="collapse2_2" class="panel-collapse collapse">
-									<div class="panel-body">Panel 3.2</div>
+									<div class="panel-body">
+										
+										<h4><b>Navigate to Login Page and Login</b></h4>
+										
+										<ul class="list-group">
+											<li class="list-group-item">Launch the browser</li>
+											<li class="list-group-item">Type the url into the address bar, press enter</li>
+											<li class="list-group-item">Click 'Login' at the top right</li>
+											<li class="list-group-item">Fill in username and password, submit</li>
+										</ul>
+										
+										
+										<h4><b>View Forms and Appointments</b></h4>
+										
+										<ul class="list-group">
+											<li class="list-group-item">Click 'View Patient Forms' on your homepage</li>
+											<li class="list-group-item">Patients with submitted forms and appointment requests should be displayed</li>
+										</ul>
+										
+										
+									</div>
 								</div>
 							</div>
 						</div>
@@ -204,6 +132,9 @@
 
 
 
+<!-- General Info Starts -->
+
+				
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -213,56 +144,80 @@
 				</div>
 				<div id="collapse3" class="panel-collapse collapse">
 					<div class="panel-body">
-
 						<div class="panel-group" id="accordion1_3">
+						
+						
+						
+						
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
+									
+<!-- Nested  1: Navigation -->										
 										<a data-toggle="collapse" data-parent="#accordion1_3" href="#collapse3_1"> <span class="glyphicon glyphicon-plus"></span> &nbsp;Navigation
 										</a>
 									</h4>
 								</div>
 								<div id="collapse3_1" class="panel-collapse collapse">
 									<div class="panel-body">
-										<h4>
-											<b>Navigation is possible through the following methods:</b>
-										</h4>
+									
+									
+										<h4><b>Navigation is possible through the following methods:</b></h4>
+										
 										<ul class="list-group">
 											<li class="list-group-item">Movement bars</li>
 											<li class="list-group-item">Arrow keys</li>
 											<li class="list-group-item">Shortcuts</li>
 											<li class="list-group-item">Webpage buttons (Avoid browser controls)</li>
 										</ul>
+										
 									</div>
 								</div>
 							</div>
+							
+							
+							
+							
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion1_3" href="#collapse3_2"> <span class="glyphicon glyphicon-plus"></span> &nbsp;Using Short Cuts
+									
+<!-- Nested  2: Shortcuts -->										
+										<a data-toggle="collapse" data-parent="#accordion1_3" href="#collapse3_2"> <span class="glyphicon glyphicon-plus"></span> &nbsp;Using Shortcuts
 										</a>
 									</h4>
 								</div>
 								<div id="collapse3_2" class="panel-collapse collapse">
 									<div class="panel-body">
+									
 										<ul class="list-group">
-											<li class="list-group-item">End key -> End of page</li>
-											<li class="list-group-item">Tab Key -> Move to next field</li>
+											<li class="list-group-item">End key = End of page</li>
+											<li class="list-group-item">Tab Key = Move to next field</li>
 										</ul>
+										
 									</div>
 								</div>
 							</div>
+							
+							
+							
+							
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
+									
+<!-- Nested  3: Tools -->									
 										<a data-toggle="collapse" data-parent="#accordion1_3" href="#collapse3_3"> <span class="glyphicon glyphicon-plus"></span> &nbsp;ToolBars and ToolTips
 										</a>
 									</h4>
 								</div>
 								<div id="collapse3_3" class="panel-collapse collapse">
 									<div class="panel-body">
+									
+								
 										<ul class="list-group">
 											<li class="list-group-item">Application contains standard header and footer which acts a toolbar and by clicking header can be navigated to home page</li>
+											
 										</ul>
 									</div>
 								</div>
@@ -272,6 +227,8 @@
 				</div>
 			</div>
 		</div>
+		
+
 
 		<!-- All modifications should end here -->
 
