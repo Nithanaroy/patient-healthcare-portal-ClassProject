@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 public class PatientDAO {
 
-	private DataSource dataSource;
+	private org.apache.tomcat.jdbc.pool.DataSource dataSource;
 
 	/**
 	 * Fetch the connection string
@@ -106,6 +106,32 @@ public class PatientDAO {
 			exp.printStackTrace();
 		}
 		return e;
+	}
+	
+	public Patient viewPatient(int i) //similar findPatient without parameter returns hopefully the first patient in the list combined with front end should keep printing the next one till end but not sure how to keep incrementing
+	{
+		Patient f = null;
+		try
+		{
+			Connection con = dataSource.getConnection();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs != null)
+			{
+				f = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3),
+						rs.getString(4), rs.getString(5), rs.getString(6),
+						rs.getString(7), rs.getString(8), rs.getString(9),
+						rs.getString(10));
+			}
+			con.close();
+		} catch (SQLException exp) {
+			return null; //should return nothing if it hits an exception where there isn't any patient
+		}
+		return f;
+	}
+				
+			}
+		}
 	}
 
 	/**
