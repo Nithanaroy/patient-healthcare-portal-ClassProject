@@ -1,10 +1,13 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Patient Healthcare</title>
 <script type="text/javascript" src="../js/vendor/jquery.js"></script>
-<script type="text/javascript" src="../js/vendor/bootstrap/bootstrap.js"></script>
+<script type="text/javascript"
+	src="../js/vendor/bootstrap/bootstrap.js"></script>
 <script type="text/javascript" src="../js/scripts.js"></script>
 
 <link href="../css/vendor/bootstrap/css/bootstrap.min.css"
@@ -27,15 +30,22 @@
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="index.html">Patient Healthcare</a>
+						<a class="navbar-brand" href="index.html">Home</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li><a href="#">Add Patient <span class="sr-only">(current)</span></a></li>
-							<li><a href="#">View Doctors</a></li>
+							
+							<li><a href="addPatient.html">Add Patient</a></li>
+							<li><a href="">Inpatient List <span
+									class="sr-only">(current)</span></a></li>
+							<li><a href=""> Help <span
+									class="sr-only">(current)</span></a></li>
+							<li><a href="logout.req">Logout <span
+									class="sr-only">(current)</span></a></li>
+							
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->
@@ -46,36 +56,7 @@
 
 		<!-- Body. Start modifying from here -->
 
-		<form name='createAppointment' action='' method="post">
-			<div class="form-group">
-				<div class="form-group">
-					<label for="dname">Doctor Name</label> <input type="text"
-						name='dname' class="form-control" id="dname"
-						placeholder="Enter doctor name">
-					<!-- onchange="checkUserName(this.value)" -->
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="form-group">
-					<label for="time">Appointment Date</label> <input type="date"
-						name='time' class="form-control" id="time"
-						placeholder="Enter desired date for an appointment">
-					<!-- onchange="checkUserName(this.value)" -->
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="form-group">
-					<label for="comment">Comments</label>
-					<textarea name='comment' class="form-control" id="comment"
-						placeholder="Enter any necessary comment" rows="10"> </textarea>
-					<!-- onchange="checkUserName(this.value)" -->
-				</div>
-			</div>
-
-			<button type="submit" class="btn btn-default">Submit</button>
-		</form>
+		
 
 
 		<!-- All modifications should end here -->

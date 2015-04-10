@@ -1,9 +1,13 @@
 package edu.asu.se.model;
 
+import java.util.ArrayList;
+
+
 public class Patient {
 
 	private String userName, password, firstName, lastName, gender, email,
 			mobileNumber, Address, zipCode,age,userType;
+	ArrayList<EsasRecord> esasList; 
 	private int id;
 	public Patient( int id,String userName, String firstName, String lastName,
 			String gender, String age,String email, String mobileNumber, String address,

@@ -46,37 +46,13 @@
 
 		<!-- Body. Start modifying from here -->
 
-		<form name='createAppointment' action='' method="post">
-			<div class="form-group">
-				<div class="form-group">
-					<label for="dname">Doctor Name</label> <input type="text"
-						name='dname' class="form-control" id="dname"
-						placeholder="Enter doctor name">
-					<!-- onchange="checkUserName(this.value)" -->
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="form-group">
-					<label for="time">Appointment Date</label> <input type="date"
-						name='time' class="form-control" id="time"
-						placeholder="Enter desired date for an appointment">
-					<!-- onchange="checkUserName(this.value)" -->
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="form-group">
-					<label for="comment">Comments</label>
-					<textarea name='comment' class="form-control" id="comment"
-						placeholder="Enter any necessary comment" rows="10"> </textarea>
-					<!-- onchange="checkUserName(this.value)" -->
-				</div>
-			</div>
-
-			<button type="submit" class="btn btn-default">Submit</button>
-		</form>
-
+		<div class="alert alert-info alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			${status.message}
+		</div>
 
 		<!-- All modifications should end here -->
 
