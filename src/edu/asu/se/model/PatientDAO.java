@@ -108,6 +108,34 @@ public class PatientDAO {
 		return e;
 	}
 
+	public int addESASRecord(EsasRecord esas) {
+		int success = 0;
+		try {
+			Connection con = dataSource.getConnection();
+			String sql = "INSERT INTO `se_project`.`esas`"
+					+ "(`username`,`pain`,`tiredness`,`nausea`,`depression`,"
+					+ "`anxiety`,`drowsiness`,`appetite`,`wellbeing`,`breath`,`date`)"
+					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, esas.getUserName());
+			ps.setString(2, esas.getPain());
+			ps.setString(3, esas.getTiredness());
+			ps.setString(4, esas.getNausea());
+			ps.setString(5, esas.getDepression());
+			ps.setString(6, esas.getAnxiety());
+			ps.setString(7, esas.getDrowsiness());
+			ps.setString(8, esas.getAppetitite());
+			ps.setString(9, esas.getWellbeing());
+			ps.setString(10, esas.getShortnessOfBreath());
+			ps.setDate(11, new java.sql.Date(esas.getSysdate().getTime()));
+			success = ps.executeUpdate();
+			con.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		}
+		return success;
+	}
+
 	/**
 	 * Saves the body pains information by user into body_part table
 	 * 
@@ -131,6 +159,7 @@ public class PatientDAO {
 		}
 		return true;
 	}
+
 	//
 	// public List<Patient> findByDesignation(String designation) {
 	// List<Patient> employees = new LinkedList<Patient>();
@@ -150,4 +179,24 @@ public class PatientDAO {
 	// }
 	// return employees;
 	// }
+
+	public int addAppointment(String username, String date, String doctor) {
+		int success = 0;
+		try {
+			Connection con = dataSource.getConnection();
+			String sql = "INSERT INTO `se_project`.`appointment`"
+					+ "(`username`,`appointment_time`,`doctor_name`)"
+					+ "VALUES(?,?,?)";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, date);
+			ps.setString(3, doctor);
+
+			success = ps.executeUpdate();
+			con.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		}
+		return success;
+	}
 }
