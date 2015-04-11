@@ -22,7 +22,7 @@ public class CreateAppointment implements ICommand{
 		AppointmentDAO adao = new AppointmentDAO();
 		String doctor=request.getParameter("dname");
 		String date=request.getParameter("time");
-		String username = "pat";//(String)session.getAttribute("userName");
+		String username = (String)session.getAttribute("userName");
 		// get the parameter from the html page
 		
         int success=adao.addAppointment(username, date, doctor);
