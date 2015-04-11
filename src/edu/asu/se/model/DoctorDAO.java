@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -31,24 +30,46 @@ public class DoctorDAO {
 		}
 	}
 
-	public ArrayList<Doctor> searchDoctor() {
-		ArrayList<Doctor> doctorList=new ArrayList<Doctor>();
+	public ArrayList<Doctor> getAllDoctors() {
+		ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
 
 		try {
 			Connection con = dataSource.getConnection();
 
-			String searchDoctorSql = "SELECT firstname, speciality, successrate from doctor";
+			String searchDoctorSql = "SELECT username, firstname, lastname, speciality, successrate from doctor";
 			PreparedStatement ps = con.prepareStatement(searchDoctorSql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Doctor d = new Doctor(rs.getString(1), rs.getString(2),
-						rs.getString(3));
+						rs.getString(3), rs.getString(4), rs.getString(5));
+
 				doctorList.add(d);
 			}
 		} catch (SQLException exp) {
 			exp.printStackTrace();
-			
+
 		}
 		return doctorList;
+	}
+
+	public Doctor findDoctorByUsername(String username) {
+		Doctor d = null;
+
+		try {
+			Connection con = dataSource.getConnection();
+
+			String searchDoctorSql = "SELECT username, firstname, lastname, speciality, successrate from doctor where username = '"
+					+ username + "'";
+			PreparedStatement ps = con.prepareStatement(searchDoctorSql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				d = new Doctor(rs.getString(1), rs.getString(2),
+						rs.getString(3), rs.getString(4), rs.getString(5));
+			}
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+
+		}
+		return d;
 	}
 }

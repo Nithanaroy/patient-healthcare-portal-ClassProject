@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.asu.se.model.BodyPart;
 import edu.asu.se.model.PatientDAO;
 import edu.asu.se.utils.ICommand;
 import edu.asu.se.utils.MessageType;
@@ -24,7 +25,8 @@ public class SaveBodyPart implements ICommand {
 									 */
 		String bodyPainInfo = request.getParameter("body-part-info");
 
-		boolean result = e.addBodyPainInfo(username, bodyPainInfo);
+		boolean result = e
+				.addBodyPainInfo(new BodyPart(username, bodyPainInfo));
 
 		StatusMessage g = null;
 		if (result)

@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.asu.se.model.Appointment;
+import edu.asu.se.model.Doctor;
+import edu.asu.se.model.DoctorDAO;
 import edu.asu.se.model.PatientDAO;
 import edu.asu.se.utils.ICommand;
 import edu.asu.se.utils.MessageType;
@@ -19,16 +22,20 @@ public class CreateAppointment implements ICommand {
 
 		HttpSession session = request.getSession();
 		PatientDAO adao = new PatientDAO();
-		String doctor = request.getParameter("dname");
+		Doctor doctor = new DoctorDAO().findDoctorByUsername(request
+				.getParameter("dname"));
 		String date = request.getParameter("time");
-		String username = (String) session.getAttribute("userName");
-		// get the parameter from the html page
+		String username = "dummy"; // (String) session.getAttribute("userName");
+									// // TODO: Replace when sessions are in
+									// places
 
-		int success = adao.addAppointment(username, date, doctor);
+		Appointment a = new Appointment(date, username, doctor);
+
+		int success = adao.addAppointment(a);
 		StatusMessage g = null;
 		if (success == 1)
-			g = StatusMessage.createInstance("Successfully created an appointment",
-					MessageType.success);
+			g = StatusMessage.createInstance(
+					"Successfully created an appointment", MessageType.success);
 		else
 			g = StatusMessage
 					.createInstance(
@@ -41,5 +48,4 @@ public class CreateAppointment implements ICommand {
 				response);
 
 	}
-
 }
