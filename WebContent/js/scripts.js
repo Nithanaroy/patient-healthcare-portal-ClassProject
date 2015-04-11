@@ -95,16 +95,43 @@ function checkZipCode()
 }
 
 
+function CheckChanged()
+{
+    	/*if((document.options.pwd.value != null) & (document.options.cpwd.value != null))
+    	{
+    		var a2 = istextEmpty(document.options.pwd.value);
+		var a3 = istextEmpty(document.options.cpwd.value);
+    	} Fixing currently*/
+	
+	if(document.options.mobilenumber.value != null)
+		{var a4 = istextEmpty(document.options.mobilenumber.value);}
+	
+	if(document.options.email.value != null)
+		{var a5 = istextEmpty(document.options.email.value);}
+	
+	if (document.options.address.value != null)
+        	{var a6 = istextEmpty(document.options.address.value);}
 
+	if(document.options.zipcode.value != null)
+		{var a11 = istextEmpty(document.options.zipcode.value);}
+	
+	//Check for password and repeated password
 
-
+	if ((a2 & !a3) || (!a2 & a3)) 
+        {
+		alert("Please enter data in empty fields");
+		return false;
+	}
+	else
+		{return true;}
+}
 
 function checkAll()
 {
 	//alert("entering check all");
 	var a1=istextEmpty(document.pregistration.uname.value);
 
-    var a2=istextEmpty(document.pregistration.pwd.value);
+	var a2=istextEmpty(document.pregistration.pwd.value);
 	
 	var a3=istextEmpty(document.pregistration.cpwd.value);
 	
