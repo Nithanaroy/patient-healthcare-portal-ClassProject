@@ -7,7 +7,7 @@ package edu.asu.se.utils;
  *
  */
 public enum UserType {
-	patient("Patient"), staff("Staff"); // Doctor and other staff
+	patient("patient"), staff("staff"); // Doctor and other staff
 
 	private String name;
 
@@ -37,6 +37,8 @@ public enum UserType {
 				return UserType.staff;
 		} catch (Exception e) {
 		}
+		//return null;
+		
 		throw new IllegalArgumentException(
 				"Given type is invalid. Permitted values are: "
 						+ StringJoin.join(permittedStrings, ","));
