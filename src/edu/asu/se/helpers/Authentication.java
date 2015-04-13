@@ -21,27 +21,28 @@ public class Authentication implements ICommand {
 		String password = request.getParameter("pwd");
 
 		UserType userType = ldao.authenticateAndGetType(userName, password);
-
+		
 		HttpSession session = request.getSession();
-		session.setAttribute("userType", userType.toString());
 
+       if(userType!=null)
 		switch (userType) {
 		case patient:
+			session.setAttribute("userType", userType.toString());
 			request.getRequestDispatcher("/views/patient.jsp").forward(request,
 					response);
 			break;
 
 		case staff:
+			session.setAttribute("userType", userType.toString());
 			request.getRequestDispatcher("/views/doctor.jsp").forward(request,
 					response);
 			break;
-
-		default:
+		}
+       else{    	   				
 			session.setAttribute("flag", 1);
 			request.getRequestDispatcher("/views/login.jsp").forward(request,
 					response);
-			System.err.println("Wrong credentials");
-			break;
+			System.err.println("Wrong credentials");       
 		}
 	}
 }
