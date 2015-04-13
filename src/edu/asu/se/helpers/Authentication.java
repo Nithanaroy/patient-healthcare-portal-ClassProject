@@ -28,12 +28,14 @@ public class Authentication implements ICommand {
 		switch (userType) {
 		case patient:
 			session.setAttribute("userType", userType.toString());
+			session.setAttribute("userName", userName);
 			request.getRequestDispatcher("/views/patient.jsp").forward(request,
 					response);
 			break;
 
 		case staff:
 			session.setAttribute("userType", userType.toString());
+			session.setAttribute("userName", userName);
 			request.getRequestDispatcher("/views/doctor.jsp").forward(request,
 					response);
 			break;
