@@ -34,7 +34,7 @@ public class AddESAS implements ICommand{
 		String appetitite=request.getParameter("appetite");
 		String wellbeing=request.getParameter("wellbeing");
 		String shortnessOfBreath=request.getParameter("breath");
-        String userName=(String) session.getAttribute("userName");
+        String userName= "nitin"; //TODO: (String) session.getAttribute("userName");
         
         
         EsasRecord esasrecord=new EsasRecord(userName,pain,tiredness,nausea,depression,anxiety,drowsiness,appetitite,wellbeing,shortnessOfBreath);

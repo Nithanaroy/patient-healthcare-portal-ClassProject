@@ -42,4 +42,8 @@ public class Doctor {
 	public String getSuccessRate() {
 		return successRate;
 	}
+
+	public String getFullName() {
+		return firstName + " " + lastName;
+	}
 }

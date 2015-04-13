@@ -7,7 +7,7 @@ public class MedicalRecord {
 	private String username;
 	private List<EsasRecord> esas;
 	private List<BodyPart> bodypart;
-	private List<Appointment> appointment;
+	private List<Appointment> appointments;
 
 	public MedicalRecord(String username, List<EsasRecord> esas,
 			List<BodyPart> bodypart, List<Appointment> appointment) {
@@ -15,7 +15,7 @@ public class MedicalRecord {
 		this.username = username;
 		this.esas = esas;
 		this.bodypart = bodypart;
-		this.appointment = appointment;
+		this.appointments = appointment;
 	}
 
 	public String getUsername() {
@@ -30,8 +30,8 @@ public class MedicalRecord {
 		return bodypart;
 	}
 
-	public List<Appointment> getAppointment() {
-		return appointment;
+	public List<Appointment> getAppointments() {
+		return appointments;
 	}
 
 }

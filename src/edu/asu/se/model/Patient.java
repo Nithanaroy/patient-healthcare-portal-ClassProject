@@ -145,4 +145,8 @@ public class Patient {
 		this.userType = userType;
 	}
 
+	public String getFullName() {
+		return firstName + " " + lastName;
+	}
+	
 }

@@ -1,18 +1,19 @@
 package edu.asu.se.model;
-//import java.text.DateFormat;
+
 import java.util.Date;
+
+import edu.asu.se.utils.DateFormat;
 
 public class EsasRecord {
 
-	private String userName,pain, tiredness, nausea, depression, anxiety, drowsiness, appetitite, wellbeing, shortnessOfBreath;
-	
-  	private Date sysdate;
+	private String userName, pain, tiredness, nausea, depression, anxiety,
+			drowsiness, appetite, wellbeing, shortnessOfBreath;
 
-
+	private Date sysdate;
 
 	public EsasRecord(String userName, String pain, String tiredness,
 			String nausea, String depression, String anxiety,
-			String drowsiness, String appetitite, String wellbeing,
+			String drowsiness, String appetite, String wellbeing,
 			String shortnessOfBreath) {
 		super();
 		this.userName = userName;
@@ -22,14 +23,30 @@ public class EsasRecord {
 		this.depression = depression;
 		this.anxiety = anxiety;
 		this.drowsiness = drowsiness;
-		this.appetitite = appetitite;
+		this.appetite = appetite;
 		this.wellbeing = wellbeing;
 		this.shortnessOfBreath = shortnessOfBreath;
-	    sysdate=new Date();
+		sysdate = new Date();
 	}
-	
 
-	
+	public EsasRecord(String userName, String pain, String tiredness,
+			String nausea, String depression, String anxiety,
+			String drowsiness, String appetite, String wellbeing,
+			String shortnessOfBreath, String date) {
+		super();
+		this.userName = userName;
+		this.pain = pain;
+		this.tiredness = tiredness;
+		this.nausea = nausea;
+		this.depression = depression;
+		this.anxiety = anxiety;
+		this.drowsiness = drowsiness;
+		this.appetite = appetite;
+		this.wellbeing = wellbeing;
+		this.shortnessOfBreath = shortnessOfBreath;
+		sysdate = DateFormat.format(date);
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -86,12 +103,12 @@ public class EsasRecord {
 		this.drowsiness = drowsiness;
 	}
 
-	public String getAppetitite() {
-		return appetitite;
+	public String getAppetite() {
+		return appetite;
 	}
 
-	public void setAppetitite(String appetitite) {
-		this.appetitite = appetitite;
+	public void setAppetite(String appetite) {
+		this.appetite = appetite;
 	}
 
 	public String getWellbeing() {
@@ -112,6 +129,10 @@ public class EsasRecord {
 
 	public Date getSysdate() {
 		return sysdate;
+	}
+	
+	public String getFormattedDate() {
+		return DateFormat.toString(sysdate);
 	}
 
 	public void setSysdate(Date sysdate) {

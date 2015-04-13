@@ -109,6 +109,27 @@ public class PatientDAO {
 		}
 		return e;
 	}
+	
+	
+	public Patient findPatient(String username) {
+		Patient e = null;
+		try {
+			Connection con = dataSource.getConnection();
+			String sql = "select * from patient where username  = '" + username + "'";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				e = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3),
+						rs.getString(4), rs.getString(5), rs.getString(6),
+						rs.getString(7), rs.getString(8), rs.getString(9),
+						rs.getString(10));
+			}
+			con.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		}
+		return e;
+	}
 
 	public int addESASRecord(EsasRecord esas) {
 		int success = 0;
@@ -126,7 +147,7 @@ public class PatientDAO {
 			ps.setString(5, esas.getDepression());
 			ps.setString(6, esas.getAnxiety());
 			ps.setString(7, esas.getDrowsiness());
-			ps.setString(8, esas.getAppetitite());
+			ps.setString(8, esas.getAppetite());
 			ps.setString(9, esas.getWellbeing());
 			ps.setString(10, esas.getShortnessOfBreath());
 			ps.setDate(11, new java.sql.Date(esas.getSysdate().getTime()));
@@ -172,21 +193,21 @@ public class PatientDAO {
 			Connection con = dataSource.getConnection();
 
 			/* Prepare ESAS */
-			String sql = "SELCT username,pain,tiredness,nausea,depression,anxiety,drowsiness,appetite,wellbeing,breath,date FROM esas WHERE username  = '"
-					+ username + "'";
+			String sql = "SELECT username,pain,tiredness,nausea,depression,anxiety,drowsiness,appetite,wellbeing,breath,date FROM esas WHERE username  = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				e.add(new EsasRecord(rs.getString(1), rs.getString(2), rs
 						.getString(3), rs.getString(4), rs.getString(5), rs
 						.getString(6), rs.getString(7), rs.getString(8), rs
-						.getString(9), rs.getString(10)));
+						.getString(9), rs.getString(10), rs.getString(11)));
 			}
 
 			/* Prepare Appointments */
-			sql = "SELCT username, appointment_time, doctor_name FROM appointment WHERE username  = '"
-					+ username + "'";
+			sql = "SELECT username, appointment_time, doctor_name FROM appointment WHERE username  = ?";
 			ps = con.prepareStatement(sql);
+			ps.setString(1, username);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				a.add(new Appointment(rs.getString(2), rs.getString(1),
@@ -194,9 +215,9 @@ public class PatientDAO {
 			}
 
 			/* Prepare Body Part List */
-			sql = "SELCT username, bodyparts_indices FROM body_part WHERE username  = '"
-					+ username + "'";
+			sql = "SELECT username, bodyparts_indices FROM body_part WHERE username  = ?";
 			ps = con.prepareStatement(sql);
+			ps.setString(1, username);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				b.add(new BodyPart(rs.getString(1), rs.getString(2)));
@@ -206,9 +227,9 @@ public class PatientDAO {
 		} catch (SQLException exp) {
 			exp.printStackTrace();
 		}
-		
+
 		record = new MedicalRecord(username, e, b, a);
-		
+
 		return record;
 	}
 
