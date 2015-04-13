@@ -55,13 +55,13 @@
 		<%
 			}
 		%>
-		<form name='login' action='login.req' method="post">
+		<form name='login' action='login.req' method="post" onsubmit="return checkFieldsOfLogin()">
 			<div class="form-group">
-				<label for="uname">User Name</label> <input type="text" name='uname' class="form-control" id="uname" placeholder="Enter your username">
+				<label for="uname">User Name</label> <input type="text" name='uname' class="form-control" id="uname" placeholder="Enter your username" onchange="checkLoginUserName(this.value)">
 				<!-- onchange="checkUserName(this.value)" -->
 			</div>
 			<div class="form-group">
-				<label for="pwd">Password</label> <input type="password" name='pwd' class="form-control" id="pwd" placeholder="Enter your password">
+				<label for="pwd">Password</label> <input type="password" name='pwd' class="form-control" id="pwd" placeholder="Enter your password" onchange="checkLoginPassword(this.value)">
 				<!--  onchange="checkPassword(this.value)" -->
 			</div>
 
