@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -13,7 +15,7 @@ import javax.sql.DataSource;
 
 public class PatientDAO {
 
-	private org.apache.tomcat.jdbc.pool.DataSource dataSource;
+	private DataSource dataSource;
 
 	/**
 	 * Fetch the connection string
@@ -88,6 +90,41 @@ public class PatientDAO {
 		return null;
 	}
 
+	public ArrayList<Patient> searchPatient() {
+		ArrayList<Patient> patientList=new ArrayList<Patient>();
+
+		try {
+			Connection con = dataSource.getConnection();
+
+			String searchDoctorSql = "SELECT username from esas";
+			PreparedStatement ps = con.prepareStatement(searchDoctorSql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Patient d = new Patient(rs.getString(1));
+				patientList.add(d);
+			}
+			
+			String searchDoctorSql = "SELECT username from appointment";
+			PreparedStatement ps = con.prepareStatement(searchDoctorSql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Patient d = new Patient(rs.getString(1));
+				patientList.add(d);
+			}
+			
+			String searchDoctorSql = "SELECT username from body_part";
+			PreparedStatement ps = con.prepareStatement(searchDoctorSql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Patient d = new Patient(rs.getString(1));
+				patientList.add(d);
+			}
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		}
+		return doctorList;
+	}
+	
 	public Patient findPatient(int id) {
 		Patient e = null;
 		try {
@@ -107,31 +144,33 @@ public class PatientDAO {
 		}
 		return e;
 	}
-	
-	public Patient viewPatient(int i) //similar findPatient without parameter returns hopefully the first patient in the list combined with front end should keep printing the next one till end but not sure how to keep incrementing
-	{
-		Patient f = null;
-		try
-		{
+
+	public int addESASRecord(EsasRecord esas) {
+		int success = 0;
+		try {
 			Connection con = dataSource.getConnection();
+			String sql = "INSERT INTO `se_project`.`esas`"
+					+ "(`username`,`pain`,`tiredness`,`nausea`,`depression`,"
+					+ "`anxiety`,`drowsiness`,`appetite`,`wellbeing`,`breath`,`date`)"
+					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			if (rs != null)
-			{
-				f = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3),
-						rs.getString(4), rs.getString(5), rs.getString(6),
-						rs.getString(7), rs.getString(8), rs.getString(9),
-						rs.getString(10));
-			}
+			ps.setString(1, esas.getUserName());
+			ps.setString(2, esas.getPain());
+			ps.setString(3, esas.getTiredness());
+			ps.setString(4, esas.getNausea());
+			ps.setString(5, esas.getDepression());
+			ps.setString(6, esas.getAnxiety());
+			ps.setString(7, esas.getDrowsiness());
+			ps.setString(8, esas.getAppetitite());
+			ps.setString(9, esas.getWellbeing());
+			ps.setString(10, esas.getShortnessOfBreath());
+			ps.setDate(11, new java.sql.Date(esas.getSysdate().getTime()));
+			success = ps.executeUpdate();
 			con.close();
 		} catch (SQLException exp) {
-			return null; //should return nothing if it hits an exception where there isn't any patient
+			exp.printStackTrace();
 		}
-		return f;
-	}
-				
-			}
-		}
+		return success;
 	}
 
 	/**
@@ -143,11 +182,11 @@ public class PatientDAO {
 	 *            A string of comma separated values of body part indices
 	 * @return true if saved, else false
 	 */
-	public boolean addBodyPainInfo(String username, String bodyPartIndices) {
+	public boolean addBodyPainInfo(BodyPart b) {
 		try {
 			Connection con = dataSource.getConnection();
 			String sql = "INSERT INTO body_part (username, bodyparts_indices) VALUES ('"
-					+ username + "', '" + bodyPartIndices + "')";
+					+ b.getUsername() + "', '" + b.getIndices() + "')";
 			System.out.println(sql);
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.executeUpdate();
@@ -157,23 +196,74 @@ public class PatientDAO {
 		}
 		return true;
 	}
-	//
-	// public List<Patient> findByDesignation(String designation) {
-	// List<Patient> employees = new LinkedList<Patient>();
-	// try {
-	// Connection con = dataSource.getConnection();
-	// String sql = "select * from Employee where Designation  = '"
-	// + designation + "'";
-	// PreparedStatement ps = con.prepareStatement(sql);
-	// ResultSet rs = ps.executeQuery();
-	// while (rs.next()) {
-	// employees.add(new Patient(rs.getInt(1), rs.getString(2), rs
-	// .getString(3), rs.getFloat(4)));
-	// }
-	// con.close();
-	// } catch (SQLException exp) {
-	// exp.printStackTrace();
-	// }
-	// return employees;
-	// }
+
+	public MedicalRecord getMedicalHistory(String username) {
+		MedicalRecord record = null;
+
+		List<EsasRecord> e = new LinkedList<EsasRecord>();
+		List<BodyPart> b = new LinkedList<BodyPart>();
+		List<Appointment> a = new LinkedList<Appointment>();
+		try {
+			Connection con = dataSource.getConnection();
+
+			/* Prepare ESAS */
+			String sql = "SELCT username,pain,tiredness,nausea,depression,anxiety,drowsiness,appetite,wellbeing,breath,date FROM esas WHERE username  = '"
+					+ username + "'";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				e.add(new EsasRecord(rs.getString(1), rs.getString(2), rs
+						.getString(3), rs.getString(4), rs.getString(5), rs
+						.getString(6), rs.getString(7), rs.getString(8), rs
+						.getString(9), rs.getString(10)));
+			}
+
+			/* Prepare Appointments */
+			sql = "SELCT username, appointment_time, doctor_name FROM appointment WHERE username  = '"
+					+ username + "'";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				a.add(new Appointment(rs.getString(2), rs.getString(1),
+						new DoctorDAO().findDoctorByUsername(rs.getString(3))));
+			}
+
+			/* Prepare Body Part List */
+			sql = "SELCT username, bodyparts_indices FROM body_part WHERE username  = '"
+					+ username + "'";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				b.add(new BodyPart(rs.getString(1), rs.getString(2)));
+			}
+
+			con.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		}
+		
+		record = new MedicalRecord(username, e, b, a);
+		
+		return record;
+	}
+
+	public int addAppointment(Appointment a) {
+		int success = 0;
+		try {
+			Connection con = dataSource.getConnection();
+			String sql = "INSERT INTO `se_project`.`appointment`"
+					+ "(`username`,`appointment_time`,`doctor_name`)"
+					+ "VALUES(?,?,?)";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, a.getUsername());
+			ps.setString(2, a.getDate());
+			ps.setString(3, a.getDoctor().getUserName());
+
+			success = ps.executeUpdate();
+			con.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		}
+		return success;
+	}
 }

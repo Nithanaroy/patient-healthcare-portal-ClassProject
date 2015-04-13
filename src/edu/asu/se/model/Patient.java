@@ -20,8 +20,12 @@ public class Patient {
 		this.age = age;
 		this.id = id;
 	}
-
 	
+	public Patient(int id)
+	{
+		super();
+		this.id = id;
+	}
 
 	public Patient(String userName, String password, String firstName,
 			String lastName, String gender, String email, String mobileNumber,
