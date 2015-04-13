@@ -47,9 +47,7 @@
 		<%@ page import="edu.asu.se.model.*"%>
 		<%@ page import="java.util.ArrayList"%>
 		<%
-			ArrayList<InpatientList> patientList =(ArrayList<InpatientList>) request.getAttribute("patientList");
-		    
-		    	
+			ArrayList<InpatientList> patientList =(ArrayList<InpatientList>) request.getAttribute("patientList");		    	
 		%>
 
 		<h3>Patient Appointment List</h3>
@@ -88,43 +86,25 @@
 								<div class="dropdown">
 									<dropdown type="dropdown" class="dropdown-toggle"
 										data-toggle="dropdown" aria-expanded="false">
+							<%request.setAttribute("patientUserName", patientList.get(i).getUsername()); %>
 									<button type="button" class="btn btn-link">
 										<em><%=patientList.get(i).getUsername()%></em>
 									</button>
 									</dropdown>
 									<ul class="dropdown-menu" role="menu">
 										<li><a
-											href="">Medical
+											href="medicalHistory.jsp">Medical
 												History</a></li>
 									</ul>
-								</div> <!--sets up patient names as a link button-->
+								</div> 
 							</td>
 							<!-- Need a new way to set a link on the name to view medical history -->
 							<td><%=patientList.get(i).getAppointmentTime()%></td>
 							<td><%=patientList.get(i).getDoctorName() %></td>
+							
 							<!-- Appointment time and doctor name-->
 						</tr>
 
-						<tr>
-							<td>
-								<div class="dropdown">
-									<dropdown type="dropdown" class="dropdown-toggle"
-										data-toggle="dropdown" aria-expanded="false">
-									<button type="button" class="btn btn-link">
-										<em>Nitin</em>
-									</button>
-									</dropdown>
-									<ul class="dropdown-menu" role="menu">
-										<li><a
-											href="file:///Users/alexslota/Desktop/Semester/Spring%202015/CSE%20360/Semester%20Project/patient-healthcare-portal-master/WebContent/views/MedicalHistory.html">Medical
-												History</a></li>
-									</ul>
-								</div> <!--sets up patient names as a link button-->
-							</td>
-							<td>10:00</td>
-							<td>Dr. Seuss</td>
-							<!-- Appointment time and doctor name-->
-						</tr>
 							</tbody>
 							<%} %>
 					<!-- End of table body -->

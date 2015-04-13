@@ -274,7 +274,14 @@ public class PatientDAO {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				InpatientList p = new InpatientList(rs.getString(1));
-            if(!patientList.contains(p))
+			int count=0;
+				for(int j=0;j<patientList.size();j++)
+			{
+				InpatientList pl=patientList.get(j);
+				if(pl.getUsername().equals(p.getUsername()))
+					count++;
+			}
+            if(count==0)
 			patientList.add(p);
 			}
 			sql = "SELECT username from body_part";
@@ -282,7 +289,14 @@ public class PatientDAO {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				InpatientList p = new InpatientList(rs.getString(1));
-            if(!patientList.contains(p))
+				int count=0;
+				for(int j=0;j<patientList.size();j++)
+			{
+				InpatientList pl=patientList.get(j);
+				if(pl.getUsername().equals(p.getUsername()))
+					count++;
+			}
+            if(count==0)
 			patientList.add(p);
 			}			
 			con.close();
