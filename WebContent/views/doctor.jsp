@@ -29,7 +29,7 @@
 						<ul class="nav navbar-nav">
 
 							<li><a href="addPatient.html">Add Patient</a></li>
-							<li><a href="">Inpatient List <span class="sr-only">(current)</span></a></li>
+							<li><a href="inpatientList.req">Inpatient List <span class="sr-only">(current)</span></a></li>
 							<li><a href=""> Help <span class="sr-only">(current)</span></a></li>
 							<li><a href="logout.req">Logout <span class="sr-only">(current)</span></a></li>
 

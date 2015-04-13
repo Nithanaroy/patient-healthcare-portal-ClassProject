@@ -23,7 +23,7 @@ public class GetInpatientList implements ICommand  {
 		
 		request.setAttribute("patientList", patientList);
 		
-		request.getRequestDispatcher("/views/inpatientList.jsp").forward(request,
+		request.getRequestDispatcher("/views/InpatientList.jsp").forward(request,
 				response);		
 	}
 	
