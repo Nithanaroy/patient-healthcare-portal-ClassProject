@@ -44,6 +44,11 @@ public class Patient {
 		this.setAge(age);
 		this.setUserType("patient");
 	}
+	
+	public Patient(String userName)
+	{
+		this.userName=userName;
+	}
 
 	public String getFirstName() {
 		return firstName;

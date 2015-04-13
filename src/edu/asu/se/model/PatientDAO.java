@@ -1,5 +1,5 @@
 package edu.asu.se.model;
-
+import edu.asu.se.model.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,11 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+
 
 public class PatientDAO {
 
@@ -251,5 +254,41 @@ public class PatientDAO {
 			exp.printStackTrace();
 		}
 		return success;
+	}
+	
+	public ArrayList<InpatientList> getInpatientList()
+	{
+		ArrayList<InpatientList> patientList = new ArrayList<InpatientList>();
+		try {
+			Connection con = dataSource.getConnection();
+			String sql = "SELECT username,appointment_time,doctor_name from appointment";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				InpatientList p = new InpatientList(rs.getString(1),rs.getString(2),rs.getString(3));
+            
+			patientList.add(p);
+			}
+			sql = "SELECT username from esas";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				InpatientList p = new InpatientList(rs.getString(1));
+            if(!patientList.contains(p))
+			patientList.add(p);
+			}
+			sql = "SELECT username from body_part";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				InpatientList p = new InpatientList(rs.getString(1));
+            if(!patientList.contains(p))
+			patientList.add(p);
+			}			
+			con.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		}						
+				return patientList;
 	}
 }
