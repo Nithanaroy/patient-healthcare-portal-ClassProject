@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -43,7 +45,7 @@
 
 		<!-- Body. Start modifying from here -->
 
-		<form name='createAppointment' action='createAppointment.req' method="post">
+		<form name='createAppointment' action='createAppointment.req' method="post" >
 			<div class="form-group">
 				<div class="form-group">
 					<label for="dname">Doctor Name</label> <input type="text" name='dname' class="form-control" id="dname" placeholder="Enter doctor name">
@@ -54,8 +56,8 @@
 			<div class="form-group">
 				<div class="form-group">
 					<label for="time">Appointment Date</label> 
-					<input type="date" name='time' class="form-control" id="time" placeholder="Enter desired date for an appointment">
-					<!-- onchange="checkUserName(this.value)" -->
+					<input type="date" min="2015-04-21" max="2015-12-31" class="form-control" id="time" >
+					
 				</div>
 			</div>
 

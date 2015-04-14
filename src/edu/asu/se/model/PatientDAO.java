@@ -239,6 +239,7 @@ public class PatientDAO {
 		int success = 0;
 		try {
 			Connection con = dataSource.getConnection();
+			
 			String sql = "INSERT INTO `se_project`.`appointment`"
 					+ "(`username`,`appointment_time`,`doctor_name`)"
 					+ "VALUES(?,?,?)";

@@ -36,7 +36,7 @@ public class Authentication implements ICommand {
 		case staff:
 			session.setAttribute("userType", userType.toString());
 			session.setAttribute("userName", userName);
-			request.getRequestDispatcher("/views/doctor.jsp").forward(request,
+			request.getRequestDispatcher("/views/doctorHome.jsp").forward(request,
 					response);
 			break;
 		}

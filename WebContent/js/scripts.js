@@ -1,3 +1,4 @@
+
 function checkUserName(uname) {
 	// alert("entering checkUserName");
 	var a = /[a-zA-Z0-9_]{3,15}/;
@@ -197,4 +198,8 @@ function checkLoginUserName(uname) {
 	}
 }
 
-
+function getmin()
+{
+	var date=curentDate();
+	document.createAppointment.time.min=currentDate;
+	}
