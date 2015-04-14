@@ -60,6 +60,7 @@ public class ControllerServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 		String subUri = uri.substring(uri.lastIndexOf("/"));
 		String commandClass = props.getProperty(subUri);
+		//System.out.println(commandClass);
 		try {
 			ICommand cmd = (ICommand) Class.forName(commandClass).newInstance();
 			cmd.execute(request, response);

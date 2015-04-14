@@ -93,55 +93,7 @@ public class PatientDAO {
 		return null;
 	}
 	
-	public Patient editPatient(Patient p) 
-	{
-		try 
-		{
-			Connection con = dataSource.getConnection();
-
-			String loginSql = "INSERT INTO login (username,pwd,usertype)"
-					+ "VALUES ('" + p.getUserName() + "','" + p.getPassword()
-					+ "','" + p.getUserType() + "')";
-
-			System.out.println(loginSql);
-
-			PreparedStatement ps = con.prepareStatement(loginSql,
-					Statement.RETURN_GENERATED_KEYS);
-			ps.executeUpdate();
-			}
-			ps.close();
-
-			String sql = "UPDATE patient SET
-					+ "', 'firstname' = '"
-					+ p.getFirstName()
-					+ "', 'lastname' = '"
-					+ p.getLastName()
-					+ "', 'gender' = '"
-					+ p.getGender()
-					+ "', 'email' = '"
-					+ p.getEmail()
-					+ "', 'mobilenumber' = '" 
-					+ p.getMobileNumber()
-					+ "', 'address' = '"
-					+ p.getAddress()
-					+ "', 'zipcode' = '"
-					+ p.getZipCode() + "','" + p.getAge() + "')"
-					+ "', 'age' = '"
-					+ p.getAge() + "'"
-					+ "WHERE 'username' = '" + p.getUserName() + "'";
-
-			System.out.println(sql);
-			PreparedStatement ps1 = con.prepareStatement(sql);
-			ps1.executeUpdate();
-			con.close();
-			return findPatient(p.getPatientId());
-		} catch (Exception exp) 
-		{
-			exp.printStackTrace();
-		}
-		return null;
-	}
-
+	
 	public Patient findPatient(int id) {
 		Patient e = null;
 		try {
@@ -354,4 +306,55 @@ public class PatientDAO {
 		}						
 				return patientList;
 	}
+
+	public int editPatient(Patient p) 
+	{
+		try 
+		{
+			Connection con = dataSource.getConnection();			
+
+			String sql = "UPDATE patient SET";
+					
+			String loginSql = "";
+
+			System.out.println(loginSql);
+
+			PreparedStatement ps = con.prepareStatement(loginSql,
+					Statement.RETURN_GENERATED_KEYS);
+
+			System.out.println(sql);
+			PreparedStatement ps1 = con.prepareStatement(sql);
+			int success=ps1.executeUpdate();
+			con.close();
+			return success;
+		} 
+	catch (Exception exp) 
+		{
+			exp.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public Patient getPatient(String uname) {
+		Patient e = null;
+		try {
+			Connection con = dataSource.getConnection();
+			String sql = "select * from patient where username  = ?" ;
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, uname);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				e = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3),
+						rs.getString(4), rs.getString(5), rs.getString(6),
+						rs.getString(7), rs.getString(8), rs.getString(9),
+						rs.getString(10));
+			}
+			con.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		}
+		return e;
+	}
+
+
 }

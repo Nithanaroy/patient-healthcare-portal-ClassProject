@@ -43,7 +43,7 @@
 							<li><a href="viewDoctors.jsp">View Doctors</a></li>
 							<li><a href="TreatmentRequest.jsp">Treatment Request <span
 									class="sr-only">(current)</span></a></li>
-							<li><a href="personalprofile.jsp">Personal Profile <span
+							<li><a href="viewPatient.req">Personal Profile <span
 									class="sr-only">(current)</span></a></li>
 						   <li><a href="help.jsp"> Help <span
 									class="sr-only">(current)</span></a></li>
