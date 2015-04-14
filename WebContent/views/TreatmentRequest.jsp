@@ -27,7 +27,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="patient.jsp">Home</a>
+				<a class="navbar-brand" href="patientHome.jsp">Home</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,10 +43,28 @@
 
 		<!-- Body. Start modifying from here -->
 		
+		<center>
+		<table
+			class="table table-condensed table-hover table-bordered table-striped">
+			<thead>
+				<tr><td>
+				<a href="createAppointment.html">Create Appointment <span class="sr-only">(current)</span></a>
+				</td></tr>
+				<tr><td>
 		<a href="ESAS.jsp"> Fill ESAS Form <span class="sr-only">(current)</span></a>
+				</td></tr>
+				<tr><td>
+				<a href="">Fill Body Part Form <span class="sr-only">(current)</span></a>
+				</td></tr>
+				
+				
+			</thead>
 		
-		<br>
-		<a href="">Fill Body Part Form <span class="sr-only">(current)</span></a>
+		
+		</table>
+		</center>
+		
+		
 
 
 		<!-- All modifications should end here -->
