@@ -86,25 +86,17 @@
 					<tbody>
 						<tr>
 							<td>
-								<div class="dropdown">
-									<dropdown type="dropdown" class="dropdown-toggle"
-										data-toggle="dropdown" aria-expanded="false">
-							<%request.setAttribute("patientUserName", patientList.get(i).getUsername()); %>
-									<button type="button" class="btn btn-link">
-										<em><%=patientList.get(i).getUsername()%></em>
-									</button>
-									</dropdown>
-									<ul class="dropdown-menu" role="menu">
-										<li><a
-											href="medicalHistory.req">Medical
-												History</a></li>
-									</ul>
-								</div> 
+								<%=patientList.get(i).getUsername()	 %> 
 							</td>
 							<!-- Need a new way to set a link on the name to view medical history -->
 							<td><%=patientList.get(i).getAppointmentTime()%></td>
 							<td><%=patientList.get(i).getDoctorName() %></td>
-							
+							<td><form name='forms' method='post' action="medicalHistory.req">
+								<button type="submit" class="btn btn-link">
+										<em>Medical History</em>
+									</button>
+								<td><input type="hidden" name="patientName" value="<%=patientList.get(i).getUsername()%>" /></td>
+								</form>
 							<!-- Appointment time and doctor name-->
 						</tr>
 

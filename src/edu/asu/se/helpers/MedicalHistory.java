@@ -17,17 +17,19 @@ public class MedicalHistory implements ICommand {
 			throws ServletException, IOException {
 		PatientDAO e = new PatientDAO();
 
-		String username = "nitin"; /*
-									 * TODO: Should be pulled from Session
-									 * String
-									 */
+		// String username = "nitin";
 
+		/*
+		 * TODO: Should be pulled from Session String
+		 */
+		String username = request.getParameter("patientName");
+		System.out.println(username);
 		MedicalRecord history = e.getMedicalHistory(username);
 
 		request.setAttribute("history", history);
 
-		request.getRequestDispatcher("/views/medicalHistory.jsp").forward(request,
-				response);
+		request.getRequestDispatcher("/views/medicalHistory.jsp").forward(
+				request, response);
 	}
 
 }
