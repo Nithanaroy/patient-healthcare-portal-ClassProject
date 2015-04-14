@@ -5,6 +5,21 @@ import java.util.ArrayList;
 
 public class Patient {
 
+	public Patient(String userName, String firstName, String lastName,
+			String gender, String email, String mobileNumber, String address,
+			String zipCode, String age) {
+		super();
+		this.userName = userName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		Address = address;
+		this.zipCode = zipCode;
+		this.age = age;
+	}
+
 	private String userName, password, firstName, lastName, gender, email,
 			mobileNumber, Address, zipCode,age,userType;
 	ArrayList<EsasRecord> esasList; 
@@ -45,10 +60,12 @@ public class Patient {
 		this.setUserType("patient");
 	}
 	
-	public Patient(String userName)
-	{
-		this.userName=userName;
-	}
+
+
+
+
+
+
 
 	public String getFirstName() {
 		return firstName;

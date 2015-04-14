@@ -1,4 +1,5 @@
 package edu.asu.se.model;
+
 import edu.asu.se.model.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +14,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-
 
 public class PatientDAO {
 
@@ -92,8 +91,7 @@ public class PatientDAO {
 		}
 		return null;
 	}
-	
-	
+
 	public Patient findPatient(int id) {
 		Patient e = null;
 		try {
@@ -113,13 +111,13 @@ public class PatientDAO {
 		}
 		return e;
 	}
-	
-	
+
 	public Patient findPatient(String username) {
 		Patient e = null;
 		try {
 			Connection con = dataSource.getConnection();
-			String sql = "select * from patient where username  = '" + username + "'";
+			String sql = "select * from patient where username  = '" + username
+					+ "'";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
@@ -256,9 +254,8 @@ public class PatientDAO {
 		}
 		return success;
 	}
-	
-	public ArrayList<InpatientList> getInpatientList()
-	{
+
+	public ArrayList<InpatientList> getInpatientList() {
 		ArrayList<InpatientList> patientList = new ArrayList<InpatientList>();
 		try {
 			Connection con = dataSource.getConnection();
@@ -266,80 +263,78 @@ public class PatientDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				InpatientList p = new InpatientList(rs.getString(1),rs.getString(2),rs.getString(3));
-            
-			patientList.add(p);
+				InpatientList p = new InpatientList(rs.getString(1),
+						rs.getString(2), rs.getString(3));
+
+				patientList.add(p);
 			}
 			sql = "SELECT username from esas";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				InpatientList p = new InpatientList(rs.getString(1));
-			int count=0;
-				for(int j=0;j<patientList.size();j++)
-			{
-				InpatientList pl=patientList.get(j);
-				if(pl.getUsername().equals(p.getUsername()))
-					count++;
-			}
-            if(count==0)
-			patientList.add(p);
+				int count = 0;
+				for (int j = 0; j < patientList.size(); j++) {
+					InpatientList pl = patientList.get(j);
+					if (pl.getUsername().equals(p.getUsername()))
+						count++;
+				}
+				if (count == 0)
+					patientList.add(p);
 			}
 			sql = "SELECT username from body_part";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				InpatientList p = new InpatientList(rs.getString(1));
-				int count=0;
-				for(int j=0;j<patientList.size();j++)
-			{
-				InpatientList pl=patientList.get(j);
-				if(pl.getUsername().equals(p.getUsername()))
-					count++;
+				int count = 0;
+				for (int j = 0; j < patientList.size(); j++) {
+					InpatientList pl = patientList.get(j);
+					if (pl.getUsername().equals(p.getUsername()))
+						count++;
+				}
+				if (count == 0)
+					patientList.add(p);
 			}
-            if(count==0)
-			patientList.add(p);
-			}			
 			con.close();
 		} catch (SQLException exp) {
 			exp.printStackTrace();
-		}						
-				return patientList;
+		}
+		return patientList;
 	}
 
-	public int editPatient(Patient p) 
-	{
-		try 
-		{
-			Connection con = dataSource.getConnection();			
+	public int editPatient(Patient p) {
+		try {
+			Connection con = dataSource.getConnection();
 
-			String sql = "UPDATE patient SET";
-					
-			String loginSql = "";
+			String sql = "UPDATE se_project.patient SET firstname=?,lastname=? ,gender=?,age=?,email=?,mobilenumber=?,address=?,zipcode=? WHERE username=?;";
 
-			System.out.println(loginSql);
+			PreparedStatement ps = con.prepareStatement(sql);
+			System.out.println(p.getUserName());
+			ps.setString(1, p.getFirstName());
+			ps.setString(2, p.getLastName());
+			ps.setString(3, p.getGender());
+			ps.setString(4, p.getAge());
+			ps.setString(5, p.getEmail());
+			ps.setString(6, p.getMobileNumber());
+			ps.setString(7, p.getAddress());
+			ps.setString(8, p.getZipCode());
+			ps.setString(9, p.getUserName());
 
-			PreparedStatement ps = con.prepareStatement(loginSql,
-					Statement.RETURN_GENERATED_KEYS);
-
-			System.out.println(sql);
-			PreparedStatement ps1 = con.prepareStatement(sql);
-			int success=ps1.executeUpdate();
+			int success = ps.executeUpdate();
 			con.close();
 			return success;
-		} 
-	catch (Exception exp) 
-		{
+		} catch (Exception exp) {
 			exp.printStackTrace();
 		}
 		return 0;
 	}
-	
+
 	public Patient getPatient(String uname) {
 		Patient e = null;
 		try {
 			Connection con = dataSource.getConnection();
-			String sql = "select * from patient where username  = ?" ;
+			String sql = "select * from patient where username  = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, uname);
 			ResultSet rs = ps.executeQuery();
@@ -355,6 +350,5 @@ public class PatientDAO {
 		}
 		return e;
 	}
-
 
 }

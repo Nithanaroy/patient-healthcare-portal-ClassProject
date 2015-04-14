@@ -29,7 +29,7 @@ public class Authentication implements ICommand {
 		case patient:
 			session.setAttribute("userType", userType.toString());
 			session.setAttribute("userName", userName);
-			request.getRequestDispatcher("/views/patient.jsp").forward(request,
+			request.getRequestDispatcher("/views/patientHome.jsp").forward(request,
 					response);
 			break;
 

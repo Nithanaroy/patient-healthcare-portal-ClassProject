@@ -58,9 +58,9 @@
 					class="form-control" id="uname"
 					placeholder="Enter desired user name" value=<%=p.getUserName()%>
 					disabled>
+					
 				<!-- onchange="checkUserName(this.value)" -->
-			</div>
-			
+			</div>			
 
 			<div class="form-group">
 				<label for="fname">First Name</label> <input type="text"
