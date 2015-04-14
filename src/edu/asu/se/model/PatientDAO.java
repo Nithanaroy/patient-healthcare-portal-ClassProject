@@ -217,12 +217,12 @@ public class PatientDAO {
 			}
 
 			/* Prepare Body Part List */
-			sql = "SELECT username, bodyparts_indices FROM body_part WHERE username  = ?";
+			sql = "SELECT username, bodyparts_indices,date FROM body_part WHERE username  = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, username);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				b.add(new BodyPart(rs.getString(1), rs.getString(2)));
+				b.add(new BodyPart(rs.getString(1), rs.getString(2),rs.getString(3)));			
 			}
 
 			con.close();

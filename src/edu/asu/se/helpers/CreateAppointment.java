@@ -25,7 +25,8 @@ public class CreateAppointment implements ICommand {
 		Doctor doctor = new DoctorDAO().findDoctorByUsername(request
 				.getParameter("dname"));
 		String date = request.getParameter("time");
-		//System.out.println(date);	
+		System.out.println(date);	
+		
 		//String username = "nitin";
 		String username = (String) session.getAttribute("userName");
 		// // TODO: Replace when sessions are in

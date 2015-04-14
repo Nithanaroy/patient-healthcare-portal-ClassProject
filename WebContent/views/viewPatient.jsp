@@ -18,9 +18,8 @@
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <% if(session.getAttribute("userType")!=null){
-	if(session.getAttribute("userType").equals("patient")){ %>
+	if(session.getAttribute("userType").equals("staff")){ %>
 <body>
-
 	<div class='container'>
 		<header>
 			<nav class="navbar navbar-default">

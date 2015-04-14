@@ -7,11 +7,11 @@ import edu.asu.se.utils.DateFormat;
 public class BodyPart {
 
 	private String username, indices;
-	private Date date;
+	private String date;
 
-	public BodyPart(String date, String username, String indices) {
+	public BodyPart( String username, String indices,String date) {
 		super();
-		this.date = DateFormat.format(date);
+		this.date = date;
 		this.username = username;
 		this.indices = indices;
 	}
@@ -23,7 +23,8 @@ public class BodyPart {
 	}
 
 	public String getDate() {
-		return DateFormat.toString(date);
+		return this.date;
+		
 	}
 
 	public String getUsername() {
@@ -37,6 +38,7 @@ public class BodyPart {
 	public String getPatientName() {
 		// TODO: A bad way of doing things
 		PatientDAO d = new PatientDAO();
+		System.out.println(username);
 		Patient p = d.findPatient(username);
 		return p.getFullName();
 	}

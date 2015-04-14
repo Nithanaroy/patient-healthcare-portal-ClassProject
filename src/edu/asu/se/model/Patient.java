@@ -168,7 +168,7 @@ public class Patient {
 	}
 
 	public String getFullName() {
-		return firstName + " " + lastName;
+		return this.firstName + " " + this.lastName;
 	}
 	
 }

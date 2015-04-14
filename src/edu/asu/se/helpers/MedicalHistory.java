@@ -23,7 +23,7 @@ public class MedicalHistory implements ICommand {
 		 * TODO: Should be pulled from Session String
 		 */
 		String username = request.getParameter("patientName");
-		System.out.println(username);
+		//System.out.println(username);
 		MedicalRecord history = e.getMedicalHistory(username);
 
 		request.setAttribute("history", history);

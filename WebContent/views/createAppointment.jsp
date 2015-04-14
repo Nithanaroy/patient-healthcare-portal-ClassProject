@@ -58,8 +58,8 @@
 			<div class="form-group">
 				<div class="form-group">
 					<label for="time">Appointment Date</label> 
-					<input type="date" min="2015-04-21" max="2015-12-31" class="form-control" id="time" >
-					
+					<input type="date" min="2015-04-21" name="time" class="form-control" id="time" >
+					 <!-- max="2015-12-31"  -->
 				</div>
 			</div>
 

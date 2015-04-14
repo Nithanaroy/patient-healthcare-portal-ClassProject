@@ -131,6 +131,8 @@ td.selected {
 					<div class='mbottom20'>
 						Patient's Name:
 						<c:out value="${b.patientName}" />
+						<br /> Date:
+						<c:out value="${b.date}" />
 						<br /> <a href="#" class='bodyImage' data-indices='${b.indices}' data-toggle="modal" data-target="#myModal">View Image</a> <br />
 					</div>
 				</c:forEach>
