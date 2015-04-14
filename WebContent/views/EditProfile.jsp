@@ -16,6 +16,8 @@
 	rel="stylesheet" type="text/css">
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 </head>
+<% if(session.getAttribute("userType")!=null){
+	if(session.getAttribute("userType").equals("patient")){ %>
 <body>
 	<div class='container'>
 		<header> <nav class="navbar navbar-default">
@@ -28,7 +30,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="patient.jsp">Home</a>
+				<a class="navbar-brand" href="patientHome.jsp">Home</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
@@ -141,4 +143,9 @@
 		</footer>
 	</div>
 </body>
+<%}}
+else{%>
+
+<h2>You dont have permission to view this page</h2>
+<%} %>
 </html>

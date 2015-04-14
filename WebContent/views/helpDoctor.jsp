@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,6 +13,8 @@
 <link href="../css/vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 </head>
+<% if(session.getAttribute("userType")!=null){
+	if(session.getAttribute("userType").equals("staff")){ %>
 <body>
 	<div class='container'>
 		<header>
@@ -21,14 +25,14 @@
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 							<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="index.html">Patient Healthcare</a>
+						<a class="navbar-brand" href="doctorHome.jsp">Home</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li><a href="#">Add Patient <span class="sr-only">(current)</span></a></li>
-							<li><a href="#">View Doctors</a></li>
+							<li><a href="addPatient.jsp">Add Patient <span class="sr-only">(current)</span></a></li>
+							
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->
@@ -237,4 +241,9 @@ clicking on any of the titles expands the menu and closes the others.  -->
 		</footer>
 	</div>
 </body>
+<%}}
+else{%>
+
+<h2>You dont have permission to view this page</h2>
+<%} %>
 </html>

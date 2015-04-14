@@ -15,6 +15,8 @@
 	rel="stylesheet" type="text/css">
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 </head>
+<% if(session.getAttribute("userType")!=null){
+	if(session.getAttribute("userType").equals("patient")){ %>
 <body>
 	<div class='container'>
 		<header> <nav class="navbar navbar-default">
@@ -48,13 +50,13 @@
 			class="table table-condensed table-hover table-bordered table-striped">
 			<thead>
 				<tr><td>
-				<a href="createAppointment.html">Create Appointment <span class="sr-only">(current)</span></a>
+				<a href="createAppointment.jsp">Create Appointment <span class="sr-only">(current)</span></a>
 				</td></tr>
 				<tr><td>
 		<a href="ESAS.jsp"> Fill ESAS Form <span class="sr-only">(current)</span></a>
 				</td></tr>
 				<tr><td>
-				<a href="">Fill Body Part Form <span class="sr-only">(current)</span></a>
+				<a href="bodyPart.jsp">Fill Body Part Form <span class="sr-only">(current)</span></a>
 				</td></tr>
 				
 				
@@ -74,4 +76,9 @@
 		</footer>
 	</div>
 </body>
+<%}}
+else{%>
+
+<h2>You dont have permission to view this page</h2>
+<%} %>
 </html>

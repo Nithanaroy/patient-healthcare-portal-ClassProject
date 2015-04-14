@@ -17,7 +17,10 @@
 	rel="stylesheet" type="text/css">
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 </head>
+<% if(session.getAttribute("userType")!=null){
+	if(session.getAttribute("userType").equals("patient")){ %>
 <body>
+
 	<div class='container'>
 		<header>
 			<nav class="navbar navbar-default">
@@ -31,15 +34,16 @@
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="index.html">Patient Healthcare</a>
+						<a class="navbar-brand" href="doctorHome.jsp">Home</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li><a href="#">Add Patient <span class="sr-only">(current)</span></a></li>
-							<li><a href="#">View Doctors</a></li>
+							<li><a href="logout.req">Logout <span
+									class="sr-only">(current)</span></a></li>
+							
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->
@@ -103,4 +107,9 @@
 		</footer>
 	</div>
 </body>
+<%}}
+else{%>
+
+<h2>You dont have permission to view this page</h2>
+<%} %>
 </html>

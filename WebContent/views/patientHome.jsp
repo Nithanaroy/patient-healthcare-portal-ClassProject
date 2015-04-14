@@ -13,6 +13,8 @@
 	rel="stylesheet" type="text/css">
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 </head>
+<% if(session.getAttribute("userType")!=null){
+	if(session.getAttribute("userType").equals("patient")){ %>
 <body>
 	<div class='container'>
 		<header>
@@ -27,7 +29,7 @@
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="index.html">Patient Healthcare</a>
+						<a class="navbar-brand" href="patientHome.jsp">Patient Healthcare</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,7 +41,7 @@
 									class="sr-only">(current)</span></a></li>
 							<li><a href="viewPatient.req">Personal Profile <span
 									class="sr-only">(current)</span></a></li>
-							<li><a href="help.jsp"> Help <span class="sr-only">(current)</span></a></li>
+							<li><a href="helpPatient.jsp"> Help <span class="sr-only">(current)</span></a></li>
 							<li><a href="logout.req">Logout <span class="sr-only">(current)</span></a></li>
 						</ul>
 					</div>
@@ -66,4 +68,9 @@
 		</footer>
 	</div>
 </body>
+<%}}
+else{%>
+
+<h2>You dont have permission to view this page</h2>
+<%} %>
 </html>

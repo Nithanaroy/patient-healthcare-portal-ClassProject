@@ -38,7 +38,8 @@ td.selected {
 	margin-bottom: 20px;
 }
 </style>
-
+<% if(session.getAttribute("userType")!=null){
+	if(session.getAttribute("userType").equals("staff")){ %>
 </head>
 <body>
 	<div class='container'>
@@ -50,14 +51,16 @@ td.selected {
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 							<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="index.html">Patient Healthcare</a>
+						<a class="navbar-brand" href="doctorHome.jsp">Home</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<div class="collapse navbar-collapse"
+						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li><a href="#">Add Patient <span class="sr-only">(current)</span></a></li>
-							<li><a href="#">View Doctors</a></li>
+							<li><a href="logout.req">Logout <span
+									class="sr-only">(current)</span></a></li>
+							
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->
@@ -239,4 +242,9 @@ td.selected {
 		</footer>
 	</div>
 </body>
+<%}}
+else{%>
+
+<h2>You dont have permission to view this page</h2>
+<%} %>
 </html>

@@ -15,6 +15,8 @@
 	rel="stylesheet" type="text/css">
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 </head>
+<% if(session.getAttribute("userType")!=null){
+	if(session.getAttribute("userType").equals("staff")){ %>
 <body>
 	<div class='container'>
 		<header> <nav class="navbar navbar-default">
@@ -27,18 +29,19 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">Patient Healthcare</a>
-			</div>
+				<a class="navbar-brand" href="doctorHome.jsp">Home</a>
+					</div>
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="#">Add Patient <span class="sr-only">(current)</span></a></li>
-					<li><a href="#">View Doctors</a></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse"
+						id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><a href="logout.req">Logout <span
+									class="sr-only">(current)</span></a></li>
+							
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
 		</div>
 		<!-- /.container-fluid --> </nav> </header>
 
@@ -93,7 +96,7 @@
 									</dropdown>
 									<ul class="dropdown-menu" role="menu">
 										<li><a
-											href="medicalHistory.jsp">Medical
+											href="medicalHistory.req">Medical
 												History</a></li>
 									</ul>
 								</div> 
@@ -120,4 +123,9 @@
 		</footer>
 	</div>
 </body>
+<%}}
+else{%>
+
+<h2>You dont have permission to view this page</h2>
+<%} %>
 </html>
