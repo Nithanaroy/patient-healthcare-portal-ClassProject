@@ -21,11 +21,11 @@ public class ViewPatient implements ICommand {
 		PatientDAO pdao = new PatientDAO();
 
 		String uname = (String) session.getAttribute("userName");
-		
+
 		Patient p = pdao.getPatient(uname);
 		request.setAttribute("patient", p);
 		request.setAttribute("uname", uname);
-		
+
 		request.getRequestDispatcher("/views/EditProfile.jsp").forward(request,
 				response);
 	}

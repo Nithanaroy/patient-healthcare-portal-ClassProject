@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,6 +55,8 @@
 
 		<!-- Body. Start modifying from here -->
 
+		<c:set var="msgLength" scope="page" value="${status.message.length}"/>
+		<c:if test="${msgLength > 0}">
 		<div class="alert alert-info alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert"
 				aria-label="Close">
@@ -60,6 +64,8 @@
 			</button>
 			${status.message}
 		</div>
+
+		</c:if>
 
 		<!-- All modifications should end here -->
 

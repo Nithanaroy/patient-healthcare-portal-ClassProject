@@ -1,17 +1,16 @@
 package edu.asu.se.model;
 
-import edu.asu.se.model.*;
-import edu.asu.se.utils.MessageType;
-import edu.asu.se.utils.StatusMessage;
+
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -225,7 +224,8 @@ public class PatientDAO {
 			ps.setString(1, username);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				b.add(new BodyPart(rs.getString(1), rs.getString(2),rs.getString(3)));			
+				b.add(new BodyPart(rs.getString(1), rs.getString(2), rs
+						.getString(3)));
 			}
 
 			con.close();
@@ -242,7 +242,7 @@ public class PatientDAO {
 		int success = 0;
 		try {
 			Connection con = dataSource.getConnection();
-			
+
 			String sql = "INSERT INTO `se_project`.`appointment`"
 					+ "(`username`,`appointment_time`,`doctor_name`)"
 					+ "VALUES(?,?,?)";
