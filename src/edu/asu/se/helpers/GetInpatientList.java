@@ -1,15 +1,13 @@
 package edu.asu.se.helpers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.util.ArrayList;
-
 import edu.asu.se.model.InpatientList;
-import edu.asu.se.model.Patient;
 import edu.asu.se.model.PatientDAO;
 import edu.asu.se.utils.ICommand;
 

@@ -16,6 +16,8 @@ import javax.sql.DataSource;
 public class DoctorDAO {
 
 	private DataSource dataSource;
+	private Connection con;
+	private boolean isPublicConnection = false;
 
 	/**
 	 * Fetch the connection string
@@ -23,31 +25,42 @@ public class DoctorDAO {
 	public DoctorDAO() {
 		try {
 			Context ctx = new InitialContext();
-			dataSource = (DataSource) ctx
-					.lookup("java:comp/env/jdbc/HospitalDB");
+			dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/HospitalDB");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public DoctorDAO(Connection con) {
+		this.con = con;
+		isPublicConnection = true;
 	}
 
 	public ArrayList<Doctor> getAllDoctors() {
 		ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
 
 		try {
-			Connection con = dataSource.getConnection();
+			if (con == null)
+				con = dataSource.getConnection();
 
 			String searchDoctorSql = "SELECT username, firstname, lastname, speciality, successrate from doctor";
 			PreparedStatement ps = con.prepareStatement(searchDoctorSql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Doctor d = new Doctor(rs.getString(1), rs.getString(2),
-						rs.getString(3), rs.getString(4), rs.getString(5));
+				Doctor d = new Doctor(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 
 				doctorList.add(d);
 			}
 		} catch (SQLException exp) {
 			exp.printStackTrace();
-
+		} finally {
+			if (!isPublicConnection)
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 		return doctorList;
 	}
@@ -56,19 +69,26 @@ public class DoctorDAO {
 		Doctor d = null;
 
 		try {
-			Connection con = dataSource.getConnection();
+			if (con == null)
+				con = dataSource.getConnection();
 
 			String searchDoctorSql = "SELECT username, firstname, lastname, speciality, successrate from doctor where username = '"
 					+ username + "'";
 			PreparedStatement ps = con.prepareStatement(searchDoctorSql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				d = new Doctor(rs.getString(1), rs.getString(2),
-						rs.getString(3), rs.getString(4), rs.getString(5));
+				d = new Doctor(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 			}
 		} catch (SQLException exp) {
 			exp.printStackTrace();
-
+		} finally {
+			if (!isPublicConnection)
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 		return d;
 	}

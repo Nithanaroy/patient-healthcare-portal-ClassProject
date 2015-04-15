@@ -1,15 +1,11 @@
 package edu.asu.se.model;
 
-import java.util.Date;
-
-import edu.asu.se.utils.DateFormat;
-
 public class BodyPart {
 
 	private String username, indices;
 	private String date;
 
-	public BodyPart( String username, String indices,String date) {
+	public BodyPart(String username, String indices, String date) {
 		super();
 		this.date = date;
 		this.username = username;
@@ -24,7 +20,7 @@ public class BodyPart {
 
 	public String getDate() {
 		return this.date;
-		
+
 	}
 
 	public String getUsername() {
