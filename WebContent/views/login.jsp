@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Patient Healthcare</title>
 <script type="text/javascript" src="../js/vendor/jquery.js"></script>
@@ -33,9 +27,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<p>
-						<h3>
-							<center>Patient Health Care System</center>
-						</h3>
+						<h3 class='text-center'>Patient Health Care System</h3>
 					</div>
 					<!-- /.navbar-collapse -->
 				</div>
@@ -47,17 +39,13 @@
 		<%
 			if (session.getAttribute("flag") != null) {
 		%>
-		<p>
-		<center>
-			<h4>Invalid username or password</h4>
-		</center>
-		</p>
+		<h4 class='text-center'>Invalid username or password</h4>
 		<%
 			}
 		%>
 		<form name='login' action='login.req' method="post" onsubmit="return checkFieldsOfLogin()">
 			<div class="form-group">
-				<label for="uname">User Name</label> <input type="text" name='uname' class="form-control" id="uname" placeholder="Enter your username" onchange="checkLoginUserName(this.value)">
+				<label for="uname">User Name</label> <input type="text" name='uname' autofocus class="form-control" id="uname" placeholder="Enter your username" onchange="checkLoginUserName(this.value)">
 				<!-- onchange="checkUserName(this.value)" -->
 			</div>
 			<div class="form-group">
@@ -73,7 +61,5 @@
 			<p class='text-center'>Copyrights &copy; 2015</p>
 		</footer>
 	</div>
-</body>
-</html>
 </body>
 </html>
