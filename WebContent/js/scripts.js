@@ -12,9 +12,9 @@ function checkUserName(uname) {
 function checkPassword(pwd) {
 	// alert("entering checkPassword");
 	// alert(document.cregistration.password.value);
-	var a = /[a-zA-Z0-9]{6,15}/;
+	var a = /[a-zA-Z0-9]{3,15}/;
 	if (!(a.test(pwd))) {
-		alert("password should be min 6 charecters and max 15 charecters");
+		alert("password should be min 3 charecters and max 15 charecters");
 		document.cregistration.confirmPassword.value = "";
 		document.cregistration.password.value = "";
 		document.cregistration.confirmPassword.disabled = true;
@@ -203,3 +203,16 @@ function getmin()
 	var date=curentDate();
 	document.createAppointment.time.min=currentDate;
 	}
+
+function checkappointment()
+{
+	var a1 = istextEmpty(document.createAppointment.dname.value);
+
+	var a2 = istextEmpty(document.createAppointment.time.value);
+	if (a1 & a2)
+		return true;
+	else {
+		alert("Please enter data in empty fields");
+		return false;
+	}
+}

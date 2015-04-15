@@ -1,6 +1,9 @@
 package edu.asu.se.model;
 
 import edu.asu.se.model.*;
+import edu.asu.se.utils.MessageType;
+import edu.asu.se.utils.StatusMessage;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -243,13 +246,24 @@ public class PatientDAO {
 			String sql = "INSERT INTO `se_project`.`appointment`"
 					+ "(`username`,`appointment_time`,`doctor_name`)"
 					+ "VALUES(?,?,?)";
+			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, a.getUsername());
-			ps.setString(2, a.getDate());
+			ps.setString(2, a.getDate());			
+			if(a.getDoctor()!=null)
+			{
 			ps.setString(3, a.getDoctor().getUserName());
-
+            
 			success = ps.executeUpdate();
-			con.close();
+			
+			}
+			else
+			{  
+				
+				con.close();
+				success=2;
+
+			}
 		} catch (SQLException exp) {
 			exp.printStackTrace();
 		}

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -57,33 +57,33 @@
 			<div class="form-group">
 				<label for="uname">User Name</label> <input type="text" name='uname'
 					class="form-control" id="uname"
-					placeholder="Enter desired user name" >
-			<!-- onchange="checkUserName(this.value)" -->
+					placeholder="Enter desired user name" autofocus="autofocus"onchange="checkUserName(this.value)">
+			<!--  -->
 			</div>
 			<div class="form-group">
 				<label for="pwd">Password</label> <input type="password" name='pwd'
 					class="form-control" id="pwd"
-					placeholder="Enter your desired password">
-			<!--  onchange="checkPassword(this.value)" -->
+					placeholder="Enter your desired password" onchange="checkPassword(this.value)">
+			<!--   -->
 			</div>
 			<div class="form-group">
 				<label for="cpwd">Confirm Password</label> <input type="password" name='cpwd'
 					class="form-control" id="cpwd"
-					placeholder="Enter your password again"  >
-					<!-- onchange="checkMatchPassword()" disabled -->
+					placeholder="Enter your password again"  onchange="checkMatchPassword()" disabled>
+					<!--  -->
 			</div>
 			
 			<div class="form-group">
 				<label for="fname">First Name</label> <input type="text"
 					name='fname' class="form-control" id="fname"
 
-					placeholder="Enter your first name" autofocus="autofocus" >
-					<!-- onchange="checkName(document.pregistration.fname.value)" -->
+					placeholder="Enter your first name" onchange="checkName(document.pregistration.fname.value)" >
+					<!--  -->
 			</div>
 			<div class="form-group">
 				<label for="lname">Last Name</label> <input type="text" name='lname'
-					class="form-control" id="lname" placeholder="Enter your last name" >
-					<!-- onchange="checkName(document.pregistration.lname.value)" -->
+					class="form-control" id="lname" placeholder="Enter your last name" onchange="checkName(document.pregistration.lname.value)">
+					<!--  -->
 			</div>
 			<div class="form-group">
 				<label for="gender">Gender</label><br/> 
@@ -93,7 +93,7 @@
 
 			</div>
 			<div class="form-group">
-				<label for="age">Age</label> <input type="text" name='age'
+				<label for="age">Age</label> <input type="number" name='age'
 					class="form-control" id="age"
 
 					placeholder="Enter your age in years" >
@@ -103,8 +103,8 @@
 				<label for="email">Email</label> <input type="email" name='email'
 					class="form-control" id="email"
 
-					placeholder="Enter your email address" >
-					<!-- onchange="checkEmail(this.value)" -->
+					placeholder="Enter your email address" onchange="checkEmail(this.value)">
+					<!--  -->
 			</div>
 			<div class="form-group">
 				<label for="mobilenumber">Mobile Number</label> <input type="text" name='mobilenumber'
@@ -115,11 +115,11 @@
 			<div class="form-group">
 				<label for="address">Address</label> <input type="text" name='address'
 					class="form-control" id="address"
-					placeholder="Enter your Address" >
-					<!-- onchange="checkAddress(this.value)" -->
+					placeholder="Enter your Address" onchange="checkAddress(this.value)">
+					<!--  -->
 			</div>
 			<div class="form-group">
-				<label for="zipcode">Zip Code</label> <input type="text" name='zipcode'
+				<label for="zipcode">Zip Code</label> <input type="number" name='zipcode'
 					class="form-control" id="zipcode"
 					placeholder="Enter your password again" >
 					<!-- onchange="checkZipCode(this.value)" -->

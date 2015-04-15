@@ -25,13 +25,14 @@ public class CreateAppointment implements ICommand {
 		Doctor doctor = new DoctorDAO().findDoctorByUsername(request
 				.getParameter("dname"));
 		String date = request.getParameter("time");
-		System.out.println(date);	
 		
 		//String username = "nitin";
 		String username = (String) session.getAttribute("userName");
 		// // TODO: Replace when sessions are in
 		// places
-
+		System.out.println(date);	
+		System.out.println(username);
+		
 		Appointment a = new Appointment(date, username, doctor);
 
 		int success = adao.addAppointment(a);
@@ -39,12 +40,17 @@ public class CreateAppointment implements ICommand {
 		if (success == 1)
 			g = StatusMessage.createInstance(
 					"Successfully created an appointment", MessageType.success);
-		else
+		else if(success==0)
 			g = StatusMessage
 					.createInstance(
 							"Sorry!\nYou cannot create more than one appointment with same doctor",
 							MessageType.error);
 
+		else if(success==2)
+		g = StatusMessage
+				.createInstance(
+						"Sorry!\n Doctor name you mentioned does not exits .. please try again",
+						MessageType.error);
 		request.setAttribute("status", g);
 
 		request.getRequestDispatcher("/views/patientHome.jsp").forward(request,

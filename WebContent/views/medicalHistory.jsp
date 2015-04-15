@@ -81,6 +81,8 @@ td.selected {
 					<div class='mbottom20'>
 						Date:
 						<c:out value="${a.formattedDate}" />
+						<br /> Doctor Name:
+						<c:out value="${a.doctorName}" />
 						<br /> Patient Name:
 						<c:out value="${a.patientName}" />
 					</div>
