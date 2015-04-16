@@ -1,7 +1,6 @@
 package edu.asu.se.modeltests;
 
-
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -61,21 +60,27 @@ public class PatientDAOTest {
 
 	@Test
 	public void testAddPatient() throws SQLException {
+		PatientDAO dao = new PatientDAO(con);
+		Patient p, p1;
 		try {
-			PatientDAO dao = new PatientDAO(con);
 			// Test 1: Should insert patient when all details are provided correctly
-			Patient p = new Patient("testuser", "password", "Test", "User", "m", "testuser@test.com", "999999999", "Address", "234234",
+			 p = new Patient("testuser", "password", "Test", "User", "m", "testuser@test.com", "999999999", "Address", "234234",
 					"23");
 			dao.addPatient(p);
-			Patient p1 = dao.findPatient("testuser");
+			p1 = dao.findPatient("testuser");
+			
 			assertNotNull("Newly created patient shouldnt be null", p1);
-
+			
+		} finally {
+			con.rollback();
+		}
+		
+		try {
 			// Test 2: Should not insert patient when not all details are provided correctly
 			p = new Patient(null, "password", "Test", "User", "m", "testuser@test.com", "999999999", "Address", "234234", "23");
 			dao.addPatient(p);
 			p1 = dao.findPatient("testuser");
-			assertNotNull("Newly created patient should be null", p1);
-
+			assertNull("Newly created patient should be null", p1);
 		} finally {
 			con.rollback();
 		}
@@ -114,8 +119,5 @@ public class PatientDAOTest {
 	public void testEditPatient() {
 	}
 
-	@Test
-	public void testGetPatient() {
-	}
 
 }
