@@ -55,8 +55,8 @@
 
 		<!-- Body. Start modifying from here -->
 
-		<c:set var="msgLength" scope="page" value="${status.message.length}"/>
-		<c:if test="${msgLength > 0}">
+		<%-- <c:set var="msgLength" scope="page" value="${status.message.length}"/> --%>
+		<%-- <c:if test="${msgLength > 0}"> --%>
 		<div class="alert alert-info alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert"
 				aria-label="Close">
@@ -65,7 +65,7 @@
 			${status.message}
 		</div>
 
-		</c:if>
+		<%-- </c:if> --%>
 
 		<!-- All modifications should end here -->
 
