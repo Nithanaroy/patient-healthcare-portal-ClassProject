@@ -14,19 +14,17 @@ import edu.asu.se.utils.ICommand;
 public class ViewPatient implements ICommand {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 
 		PatientDAO pdao = new PatientDAO();
 
 		String uname = (String) session.getAttribute("userName");
 
-		Patient p = pdao.getPatient(uname);
+		Patient p = pdao.findPatient(uname);
 		request.setAttribute("patient", p);
 		request.setAttribute("uname", uname);
 
-		request.getRequestDispatcher("/views/EditProfile.jsp").forward(request,
-				response);
+		request.getRequestDispatcher("/views/EditProfile.jsp").forward(request, response);
 	}
 }

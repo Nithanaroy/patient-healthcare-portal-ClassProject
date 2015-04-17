@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,15 +19,34 @@ import javax.sql.DataSource;
 public class PatientDAO {
 
 	private DataSource dataSource;
+	private Connection con = null;
+	private boolean isPublicConnection = false; // Indicates whether the connection is
+
+	// obtained in class or someone shared
+	// their connection
 
 	/**
 	 * Fetch the connection string
 	 */
 	public PatientDAO() {
+		setDataSource();
+	}
+
+	/**
+	 * Used when are testing this class.
+	 * 
+	 * @param _con
+	 *            An open connection to the database
+	 */
+	public PatientDAO(Connection _con) {
+		this.con = _con;
+		isPublicConnection = true;
+	}
+
+	private void setDataSource() {
 		try {
 			Context ctx = new InitialContext();
-			dataSource = (DataSource) ctx
-					.lookup("java:comp/env/jdbc/HospitalDB");
+			dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/HospitalDB");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -42,74 +60,56 @@ public class PatientDAO {
 	 * @return patient object if created, else null
 	 */
 	public Patient addPatient(Patient p) {
+		int newPatientId = -1;
 		try {
-			Connection con = dataSource.getConnection();
+			if (con == null)
+				con = dataSource.getConnection();
 
-			String loginSql = "INSERT INTO login (username,pwd,usertype)"
-					+ "VALUES ('" + p.getUserName() + "','" + p.getPassword()
-					+ "','" + p.getUserType() + "')";
-
-			System.out.println(loginSql);
-
-			PreparedStatement ps = con.prepareStatement(loginSql,
-					Statement.RETURN_GENERATED_KEYS);
-			ps.executeUpdate();
-			ResultSet rs = ps.getGeneratedKeys();
-			int newPatientId = 0;
-			if (rs.next()) {
-				newPatientId = rs.getInt(1);
-			} else {
-				// do what you have to do
-			}
-			ps.close();
+			newPatientId = new LoginDAO(con).loginPatient(p);
 
 			String sql = "INSERT INTO patient (id,username, firstname, lastname, gender, email, mobilenumber, address, zipcode,age) "
-					+ "VALUES ('"
-					+ newPatientId
-					+ "','"
-					+ p.getUserName()
-					+ "','"
-					+ p.getFirstName()
-					+ "', '"
-					+ p.getLastName()
-					+ "','"
-					+ p.getGender()
-					+ "','"
-					+ p.getEmail()
-					+ "','"
-					+ p.getMobileNumber()
-					+ "','"
-					+ p.getAddress()
-					+ "','"
-					+ p.getZipCode() + "','" + p.getAge() + "')";
+					+ "VALUES ('" + newPatientId + "','" + p.getUserName() + "','" + p.getFirstName() + "', '" + p.getLastName() + "','"
+					+ p.getGender() + "','" + p.getEmail() + "','" + p.getMobileNumber() + "','" + p.getAddress() + "','" + p.getZipCode()
+					+ "','" + p.getAge() + "')";
 
 			System.out.println(sql);
-			PreparedStatement ps1 = con.prepareStatement(sql);
-			ps1.executeUpdate();
-			con.close();
-			return findPatient(newPatientId);
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.executeUpdate();
+
 		} catch (Exception exp) {
 			exp.printStackTrace();
+		} finally {
+			if (!isPublicConnection)
+				try {
+					con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 		}
-		return null;
+		return findPatient(newPatientId);
 	}
 
 	public Patient findPatient(int id) {
 		Patient e = null;
 		try {
-			Connection con = dataSource.getConnection();
+			if (con == null)
+				con = dataSource.getConnection();
 			String sql = "select * from patient where id  = " + id;
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				e = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3),
-						rs.getString(4), rs.getString(5), rs.getString(6),
-						rs.getString(7), rs.getString(8), rs.getString(9),
-						rs.getString(10));
+				e = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
+						rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
 			}
-			con.close();
 		} catch (SQLException exp) {
 			exp.printStackTrace();
+		} finally {
+			if (!isPublicConnection)
+				try {
+					con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 		}
 		return e;
 	}
@@ -117,20 +117,24 @@ public class PatientDAO {
 	public Patient findPatient(String username) {
 		Patient e = null;
 		try {
-			Connection con = dataSource.getConnection();
-			String sql = "select * from patient where username  = '" + username
-					+ "'";
+			if (con == null)
+				con = dataSource.getConnection();
+			String sql = "select * from patient where username  = '" + username + "'";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				e = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3),
-						rs.getString(4), rs.getString(5), rs.getString(6),
-						rs.getString(7), rs.getString(8), rs.getString(9),
-						rs.getString(10));
+				e = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
+						rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
 			}
-			con.close();
 		} catch (SQLException exp) {
 			exp.printStackTrace();
+		} finally {
+			if (!isPublicConnection)
+				try {
+					con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 		}
 		return e;
 	}
@@ -138,11 +142,10 @@ public class PatientDAO {
 	public int addESASRecord(EsasRecord esas) {
 		int success = 0;
 		try {
-			Connection con = dataSource.getConnection();
-			String sql = "INSERT INTO `se_project`.`esas`"
-					+ "(`username`,`pain`,`tiredness`,`nausea`,`depression`,"
-					+ "`anxiety`,`drowsiness`,`appetite`,`wellbeing`,`breath`,`date`)"
-					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+			if (con == null)
+				con = dataSource.getConnection();
+			String sql = "INSERT INTO `se_project`.`esas`" + "(`username`,`pain`,`tiredness`,`nausea`,`depression`,"
+					+ "`anxiety`,`drowsiness`,`appetite`,`wellbeing`,`breath`,`date`)" + "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, esas.getUserName());
 			ps.setString(2, esas.getPain());
@@ -156,9 +159,15 @@ public class PatientDAO {
 			ps.setString(10, esas.getShortnessOfBreath());
 			ps.setDate(11, new java.sql.Date(esas.getSysdate().getTime()));
 			success = ps.executeUpdate();
-			con.close();
 		} catch (SQLException exp) {
 			exp.printStackTrace();
+		} finally {
+			if (!isPublicConnection)
+				try {
+					con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 		}
 		return success;
 	}
@@ -174,15 +183,22 @@ public class PatientDAO {
 	 */
 	public boolean addBodyPainInfo(BodyPart b) {
 		try {
-			Connection con = dataSource.getConnection();
-			String sql = "INSERT INTO body_part (username, bodyparts_indices) VALUES ('"
-					+ b.getUsername() + "', '" + b.getIndices() + "')";
+			if (con == null)
+				con = dataSource.getConnection();
+			String sql = "INSERT INTO body_part (username, bodyparts_indices) VALUES ('" + b.getUsername() + "', '" + b.getIndices() + "')";
 			System.out.println(sql);
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
+		} finally {
+			if (!isPublicConnection)
+				try {
+					con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 		}
 		return true;
 	}
@@ -194,7 +210,8 @@ public class PatientDAO {
 		List<BodyPart> b = new LinkedList<BodyPart>();
 		List<Appointment> a = new LinkedList<Appointment>();
 		try {
-			Connection con = dataSource.getConnection();
+			if (con == null)
+				con = dataSource.getConnection();
 
 			/* Prepare ESAS */
 			String sql = "SELECT username,pain,tiredness,nausea,depression,anxiety,drowsiness,appetite,wellbeing,breath,date FROM esas WHERE username  = ?";
@@ -202,10 +219,8 @@ public class PatientDAO {
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				e.add(new EsasRecord(rs.getString(1), rs.getString(2), rs
-						.getString(3), rs.getString(4), rs.getString(5), rs
-						.getString(6), rs.getString(7), rs.getString(8), rs
-						.getString(9), rs.getString(10), rs.getString(11)));
+				e.add(new EsasRecord(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
+						rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11)));
 			}
 
 			/* Prepare Appointments */
@@ -214,8 +229,7 @@ public class PatientDAO {
 			ps.setString(1, username);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				a.add(new Appointment(rs.getString(2), rs.getString(1),
-						new DoctorDAO().findDoctorByUsername(rs.getString(3))));
+				a.add(new Appointment(rs.getString(2), rs.getString(1), new DoctorDAO().findDoctorByUsername(rs.getString(3))));
 			}
 
 			/* Prepare Body Part List */
@@ -224,16 +238,20 @@ public class PatientDAO {
 			ps.setString(1, username);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				b.add(new BodyPart(rs.getString(1), rs.getString(2), rs
-						.getString(3)));
+				b.add(new BodyPart(rs.getString(1), rs.getString(2), rs.getString(3)));
 			}
 
-			con.close();
+			record = new MedicalRecord(username, e, b, a);
 		} catch (SQLException exp) {
 			exp.printStackTrace();
+		} finally {
+			if (!isPublicConnection)
+				try {
+					con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 		}
-
-		record = new MedicalRecord(username, e, b, a);
 
 		return record;
 	}
@@ -241,12 +259,11 @@ public class PatientDAO {
 	public int addAppointment(Appointment a) {
 		int success = 0;
 		try {
-			Connection con = dataSource.getConnection();
+			if (con == null)
+				con = dataSource.getConnection();
 
-			String sql = "INSERT INTO `se_project`.`appointment`"
-					+ "(`username`,`appointment_time`,`doctor_name`)"
-					+ "VALUES(?,?,?)";
-			
+	String sql = "INSERT INTO `se_project`.`appointment`" + "(`username`,`appointment_time`,`doctor_name`)" + "VALUES(?,?,?)";
+
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, a.getUsername());
 			ps.setString(2, a.getDate());			
@@ -255,6 +272,7 @@ public class PatientDAO {
 			ps.setString(3, a.getDoctor().getUserName());
             
 			success = ps.executeUpdate();
+
 			
 			}
 			else
@@ -264,8 +282,16 @@ public class PatientDAO {
 				success=2;
 
 			}
+
 		} catch (SQLException exp) {
 			exp.printStackTrace();
+		} finally {
+			if (!isPublicConnection)
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 		}
 		return success;
 	}
@@ -273,13 +299,13 @@ public class PatientDAO {
 	public ArrayList<InpatientList> getInpatientList() {
 		ArrayList<InpatientList> patientList = new ArrayList<InpatientList>();
 		try {
-			Connection con = dataSource.getConnection();
+			if (con == null)
+				con = dataSource.getConnection();
 			String sql = "SELECT username,appointment_time,doctor_name from appointment";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				InpatientList p = new InpatientList(rs.getString(1),
-						rs.getString(2), rs.getString(3));
+				InpatientList p = new InpatientList(rs.getString(1), rs.getString(2), rs.getString(3));
 
 				patientList.add(p);
 			}
@@ -311,18 +337,26 @@ public class PatientDAO {
 				if (count == 0)
 					patientList.add(p);
 			}
-			con.close();
 		} catch (SQLException exp) {
 			exp.printStackTrace();
+		} finally {
+			if (!isPublicConnection)
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 		}
 		return patientList;
 	}
 
 	public int editPatient(Patient p) {
+		int status = 0;
 		try {
-			Connection con = dataSource.getConnection();
+			if (con == null)
+				con = dataSource.getConnection();
 
-			String sql = "UPDATE se_project.patient SET firstname=?,lastname=? ,gender=?,age=?,email=?,mobilenumber=?,address=?,zipcode=? WHERE username=?;";
+			String sql = "UPDATE patient SET firstname=?,lastname=? ,gender=?,age=?,email=?,mobilenumber=?,address=?,zipcode=? WHERE username=?;";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 			System.out.println(p.getUserName());
@@ -336,34 +370,37 @@ public class PatientDAO {
 			ps.setString(8, p.getZipCode());
 			ps.setString(9, p.getUserName());
 
-			int success = ps.executeUpdate();
-			con.close();
-			return success;
+			status = ps.executeUpdate();
 		} catch (Exception exp) {
 			exp.printStackTrace();
+		} finally {
+			if (!isPublicConnection)
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 		}
-		return 0;
+		return status;
 	}
 
-	public Patient getPatient(String uname) {
-		Patient e = null;
-		try {
-			Connection con = dataSource.getConnection();
-			String sql = "select * from patient where username  = ?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, uname);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				e = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3),
-						rs.getString(4), rs.getString(5), rs.getString(6),
-						rs.getString(7), rs.getString(8), rs.getString(9),
-						rs.getString(10));
-			}
-			con.close();
-		} catch (SQLException exp) {
-			exp.printStackTrace();
-		}
-		return e;
-	}
+	// public Patient getPatient(String uname) {
+	// Patient e = null;
+	// try {
+	// Connection con = dataSource.getConnection();
+	// String sql = "select * from patient where username  = ?";
+	// PreparedStatement ps = con.prepareStatement(sql);
+	// ps.setString(1, uname);
+	// ResultSet rs = ps.executeQuery();
+	// if (rs.next()) {
+	// e = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
+	// rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
+	// }
+	// con.close();
+	// } catch (SQLException exp) {
+	// exp.printStackTrace();
+	// }
+	// return e;
+	// }
 
 }

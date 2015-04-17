@@ -2,7 +2,6 @@ package edu.asu.se.model;
 
 import java.util.ArrayList;
 
-
 public class Patient {
 
 	public Patient(String userName, String firstName, String lastName,
@@ -15,18 +14,19 @@ public class Patient {
 		this.gender = gender;
 		this.email = email;
 		this.mobileNumber = mobileNumber;
-		Address = address;
+		this.address = address;
 		this.zipCode = zipCode;
 		this.age = age;
 	}
 
 	private String userName, password, firstName, lastName, gender, email,
-			mobileNumber, Address, zipCode,age,userType;
-	ArrayList<EsasRecord> esasList; 
+			mobileNumber, address, zipCode, age, userType;
+	ArrayList<EsasRecord> esasList;
 	private int id;
-	public Patient( int id,String userName, String firstName, String lastName,
-			String gender, String age,String email, String mobileNumber, String address,
-			String zipCode ) {
+
+	public Patient(int id, String userName, String firstName, String lastName,
+			String gender, String age, String email, String mobileNumber,
+			String address, String zipCode) {
 		super();
 		this.userName = userName;
 		this.firstName = firstName;
@@ -34,19 +34,17 @@ public class Patient {
 		this.gender = gender;
 		this.email = email;
 		this.mobileNumber = mobileNumber;
-		Address = address;
+		this.address = address;
 		this.zipCode = zipCode;
 		this.age = age;
 		this.id = id;
 	}
 
-	
-
 	public Patient(String userName, String password, String firstName,
 			String lastName, String gender, String email, String mobileNumber,
 			String address, String zipCode, String age) {
 		super();
-		
+
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
@@ -54,18 +52,11 @@ public class Patient {
 		this.gender = gender;
 		this.email = email;
 		this.mobileNumber = mobileNumber;
-		Address = address;
+		this.address = address;
 		this.zipCode = zipCode;
-		this.setAge(age);
-		this.setUserType("patient");
+		this.age = age;
+		this.userType = "patient";
 	}
-	
-
-
-
-
-
-
 
 	public String getFirstName() {
 		return firstName;
@@ -136,11 +127,11 @@ public class Patient {
 	}
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 
 	public String getZipCode() {
@@ -170,5 +161,5 @@ public class Patient {
 	public String getFullName() {
 		return this.firstName + " " + this.lastName;
 	}
-	
+
 }
