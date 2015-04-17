@@ -1,7 +1,5 @@
 package edu.asu.se.model;
 
-import static org.junit.Assert.*;
-
 import java.sql.Connection;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -10,12 +8,14 @@ import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory;
+import org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import edu.asu.se.utils.UserType;
 
 public class LoginDAOTest {
 
@@ -58,8 +58,28 @@ public class LoginDAOTest {
 	public void testLoginPatient() {
 	}
 
-	@Test
-	public void testAuthenticateAndGetType() {
-	}
+	//@Test
+	/*public void testAuthenticateAndGetType() {
+		PatientDAO dao = new PatientDAO(con);
+		DoctorDAO dao1 = new DoctorDAO(con);
+		LoginDAO dao2 = new LoginDAO(con);
+		Patient p;
+		Doctor d;
+		String user, pass;
+		Usertype type = null;
+		try
+		{
+			p = new Patient("testuser", "password", "Test", "User", "m", "testuser@test.com", "999999999", "Address", "234234","23");
+			dao.addPatient(p);
+			
+			user = p.getUserName();
+			pass = p.getPassword();
+			dao2.loginPatient(p);
+			
+			type = dao2.authenticateAndGetType(user, pass);		
+			
+			
+		}
+	}*/
 
 }
