@@ -166,10 +166,10 @@ public class PatientDAOTest {
 		
 		Patient p = new Patient("testuser", "password", "Test", "User", "m",
 				"testuser@test.com", "999999999", "Address", "234234", "23");
-		PatientDAO pdao =new PatientDAO();
+		PatientDAO pdao =new PatientDAO(con);
 		pdao.addPatient(p);
-        Doctor d=new Doctor("doctor1", "doctor1", "doctor1","surgon", "94%"); 	
-		Appointment a=new Appointment("25-04-2015","testuser",d);
+       Doctor d=new Doctor("doctor2", "doctor2", "doctor2","surgon", "94%"); 	
+		Appointment a=new Appointment("2015-25-04","testuser",d);
 		int success=pdao.addAppointment(a);
 		assertSame(1, success);
 		con.rollback();
