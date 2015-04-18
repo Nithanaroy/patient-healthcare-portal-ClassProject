@@ -1,18 +1,19 @@
 package edu.asu.se.modeltests;
 
+import static org.junit.Assert.*;
+
 import java.sql.Connection;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import edu.asu.se.model.*;
+import java.util.ArrayList;
 
 import org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory;
-import edu.asu.se.model.*;
-
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -66,7 +67,7 @@ public class DoctorDAOTest {
 		DoctorDAO dao = new DoctorDAO(con);
 		ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
 		doctorList = dao.getAllDoctors();
-	//	assertNotEquals(0, doctorList.size());
+		assertNotEquals(0, doctorList.size());
 	}
 
 	@Test
@@ -75,7 +76,7 @@ public class DoctorDAOTest {
 		DoctorDAO dao = new DoctorDAO(con);
 		Doctor doctor = dao.findDoctorByUsername("doctor1");
 
-		//assertNotNull("Doctor got from data base should not be null", doctor);
+		assertNotNull("Doctor got from data base should not be null", doctor);
 
 	}
 }
