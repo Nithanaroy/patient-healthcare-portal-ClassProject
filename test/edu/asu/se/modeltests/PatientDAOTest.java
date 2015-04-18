@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import edu.asu.se.model.*;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
@@ -18,6 +18,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import edu.asu.se.model.Appointment;
+import edu.asu.se.model.EsasRecord;
 import edu.asu.se.model.Patient;
 import edu.asu.se.model.PatientDAO;
 
@@ -94,16 +96,61 @@ public class PatientDAOTest {
 	}
 
 	@Test
-	public void testFindPatientInt() {
+	public void testFindPatientInt() throws SQLException {
+		PatientDAO dao = new PatientDAO(con);
+		Patient p;
+		try {
+			
+			p = new Patient("testuser", "password", "Test", "User", "m",
+					"testuser@test.com", "999999999", "Address", "234234", "23");
+			dao.addPatient(p);
+			dao.findPatient("testuser");
+
+			assertNotNull("Newly created patient shouldnt be null", p);
+
+		} finally {
+			con.rollback();
+		}
+
 
 	}
 
 	@Test
-	public void testFindPatientString() {
+	public void testFindPatientString() throws SQLException {
+		PatientDAO dao = new PatientDAO(con);
+		Patient p;
+		try {
+				p = new Patient("testuser", "password", "Test", "User", "m",
+					"testuser@test.com", "999999999", "Address", "234234", "23");
+			dao.addPatient(p);
+			p = dao.findPatient("testuser");
+
+			assertNotNull("Newly created patient shouldnt be null", p);
+
+		} finally {
+			con.rollback();
+		}
+
 	}
 
 	@Test
-	public void testAddESASRecord() {
+	public void testAddESASRecord() throws SQLException {
+		
+		PatientDAO dao = new PatientDAO(con);
+		Patient p;
+		try {
+			p = new Patient("testuser", "password", "Test", "User", "m",
+					"testuser@test.com", "999999999", "Address", "234234", "23");
+			dao.addPatient(p);
+			EsasRecord esas=new EsasRecord("testuser", "0", "0", "0", "0", "0","0", "0", "0", "0");
+			int success=dao.addESASRecord(esas);
+
+			assertSame(1, success);
+
+		} finally {
+			con.rollback();
+		}
+		
 	}
 
 	@Test
@@ -115,7 +162,17 @@ public class PatientDAOTest {
 	}
 
 	@Test
-	public void testAddAppointment() {
+	public void testAddAppointment() throws SQLException {
+		
+		Patient p = new Patient("testuser", "password", "Test", "User", "m",
+				"testuser@test.com", "999999999", "Address", "234234", "23");
+		PatientDAO pdao =new PatientDAO();
+		pdao.addPatient(p);
+        Doctor d=new Doctor("doctor1", "doctor1", "doctor1","surgon", "94%"); 	
+		Appointment a=new Appointment("25-04-2015","testuser",d);
+		int success=pdao.addAppointment(a);
+		assertSame(1, success);
+		con.rollback();
 	}
 
 	@Test
