@@ -1,14 +1,17 @@
-package edu.asu.se.model;
+package edu.asu.se.modeltests;
 
 import static org.junit.Assert.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import edu.asu.se.model.*;
 
 import org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory;
 import org.junit.After;
@@ -17,7 +20,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class LoginDAOTest {
+public class DoctorDAOTest {
 
 	private static DataSource dataSource;
 	private static Connection con = null;
@@ -30,14 +33,18 @@ public class LoginDAOTest {
 			connectionProps.put("username", "root");
 			connectionProps.put("password", "");
 			connectionProps.put("driverClassName", "com.mysql.jdbc.Driver");
-			connectionProps.put("url", "jdbc:mysql://localhost:3306/SE_Project_Test?autoCommit=false");
+			connectionProps
+					.put("url",
+							"jdbc:mysql://localhost:3306/SE_Project_Test?autoCommit=false");
 
-			dataSource = BasicDataSourceFactory.createDataSource(connectionProps);
+			dataSource = BasicDataSourceFactory
+					.createDataSource(connectionProps);
 
 			con = dataSource.getConnection();
 			con.setAutoCommit(false);
 		} catch (NamingException e) {
-			Logger.getLogger(PatientDAO.class.getName()).log(Level.SEVERE, null, e);
+			Logger.getLogger(PatientDAO.class.getName()).log(Level.SEVERE,
+					null, e);
 		}
 	}
 
@@ -55,11 +62,21 @@ public class LoginDAOTest {
 	}
 
 	@Test
-	public void testLoginPatient() {
+	public void testGetAllDoctors() {
+
+		DoctorDAO dao = new DoctorDAO(con);
+		ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
+		doctorList = dao.getAllDoctors();
+		assertNotEquals(0, doctorList.size());
 	}
 
 	@Test
-	public void testAuthenticateAndGetType() {
-	}
+	public void findDoctorbyUsername() {
 
+		DoctorDAO dao = new DoctorDAO(con);
+		Doctor doctor = dao.findDoctorByUsername("doctor1");
+
+		assertNotNull("Doctor got from data base should not be null", doctor);
+
+	}
 }

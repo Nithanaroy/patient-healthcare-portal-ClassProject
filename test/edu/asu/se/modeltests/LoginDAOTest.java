@@ -1,9 +1,8 @@
-package edu.asu.se.model;
+package edu.asu.se.modeltests;
 
 import static org.junit.Assert.*;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,7 +10,7 @@ import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import edu.asu.se.model.DoctorDAO;
+import edu.asu.se.model.*;
 
 import org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory;
 import org.junit.After;
@@ -20,7 +19,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class DoctorDAOTest {
+public class LoginDAOTest {
 
 	private static DataSource dataSource;
 	private static Connection con = null;
@@ -58,16 +57,19 @@ public class DoctorDAOTest {
 	}
 
 	@Test
-	public void testGetAllDoctors() {
+	public void testLoginPatient() {
+		LoginDAO ldao=new LoginDAO(con);
+		PatientDAO pdao=new PatientDAO(con);
+		Patient p = new Patient("testuser", "password", "Test", "User", "m",
+				"testuser@test.com", "999999999", "Address", "234234", "23");
+		pdao.addPatient(p);
+		int patientid=ldao.loginPatient(p);
+		assertNotEquals(null, patientid);
 		
-		DoctorDAO dao = new DoctorDAO(con);
-		ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
-		doctorList=dao.getAllDoctors();
-	    assertNotEquals(0,doctorList.size());
 	}
 
 	@Test
-	public void testFindDoctorByUsername() {
+	public void testAuthenticateAndGetType() {
 	}
 
 }
